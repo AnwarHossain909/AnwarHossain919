@@ -4,552 +4,455 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anwar Hossain | Odoo Developer & Python Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --primary: #6c63ff;
-  --primary-light: #f0eeff;
-  --text: #333;
-  --muted: #666;
-  --light: #f9f9fb;
-  --border: #eee;
-  --white: #fff;
+  --navy:    #0f172a;
+  --navy2:   #1e293b;
+  --slate:   #334155;
+  --muted:   #64748b;
+  --border:  #e2e8f0;
+  --light:   #f8fafc;
+  --white:   #ffffff;
+  --gold:    #c9a84c;
+  --gold-lt: #fdf6e7;
+  --gold-dk: #a8882e;
+  --radius:  14px;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Nunito', sans-serif;
-  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--navy);
   background: var(--white);
   font-size: 16px;
   line-height: 1.7;
 }
 
-/* NAV */
+/* ───── NAV ───── */
 nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  background: rgba(255,255,255,0.97);
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   z-index: 100;
-  padding: 0 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
+  padding: 0 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
 }
-
 .nav-logo {
-  font-weight: 800;
-  font-size: 20px;
-  color: var(--primary);
-  text-decoration: none;
-  letter-spacing: -0.5px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 800; font-size: 20px;
+  color: var(--navy); text-decoration: none;
+  letter-spacing: -0.3px;
 }
-
-.nav-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-}
-
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
 .nav-links a {
-  color: var(--muted);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
+  color: var(--muted); text-decoration: none;
+  font-weight: 500; font-size: 14px;
+  letter-spacing: 0.02em;
   transition: color 0.2s;
 }
-
-.nav-links a:hover { color: var(--primary); }
-
+.nav-links a:hover { color: var(--navy); }
 .nav-cta {
-  background: var(--primary);
+  background: var(--navy) !important;
   color: white !important;
-  padding: 8px 20px;
-  border-radius: 50px;
-  transition: opacity 0.2s !important;
+  padding: 9px 22px;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background 0.2s !important;
 }
+.nav-cta:hover { background: var(--gold) !important; color: white !important; }
 
-.nav-cta:hover { opacity: 0.85; color: white !important; }
-
-/* HERO */
+/* ───── HERO ───── */
 .hero {
-  padding: 140px 40px 80px;
+  padding: 130px 60px 90px;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
   text-align: center;
-  background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
+  background: var(--light);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -60px; right: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -40px; left: -60px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(15,23,42,0.04) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .hero-avatar {
-  width: 130px;
-  height: 130px;
+  width: 130px; height: 130px;
   border-radius: 50%;
-  object-fit: cover;
-  object-position: center top;
-  border: 5px solid var(--primary-light);
-  margin-bottom: 24px;
+  object-fit: cover; object-position: center top;
+  border: 4px solid var(--white);
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  margin-bottom: 28px;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  box-shadow: 0 8px 32px rgba(15,23,42,0.14);
+}
+.hero-avatar-placeholder {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: var(--gold-lt);
+  border: 4px solid white;
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  margin: 0 auto 28px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px;
+  box-shadow: 0 8px 32px rgba(15,23,42,0.14);
 }
 
-.hero-avatar-placeholder {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  background: var(--primary-light);
-  border: 5px solid var(--primary-light);
-  margin: 0 auto 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 56px;
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold-lt);
+  border: 1px solid rgba(201,168,76,0.35);
+  color: var(--gold-dk);
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 50px;
+  margin-bottom: 20px;
 }
+.hero-badge::before { content: '●'; font-size: 8px; color: var(--gold); }
 
 .hero h1 {
-  font-size: clamp(28px, 5vw, 48px);
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: 16px;
-  line-height: 1.2;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5.5vw, 58px);
+  font-weight: 800; line-height: 1.15;
+  color: var(--navy); margin-bottom: 20px;
+  letter-spacing: -1px;
 }
-
-.hero h1 span { color: var(--primary); }
+.hero h1 em { font-style: normal; color: var(--gold); }
 
 .hero p.tagline {
-  font-size: clamp(16px, 2.5vw, 20px);
-  color: var(--muted);
-  max-width: 560px;
-  margin: 0 auto 32px;
-  font-weight: 400;
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--muted); max-width: 520px;
+  margin: 0 auto 36px; font-weight: 400; line-height: 1.8;
 }
 
-.hero-btns {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
 .btn {
-  padding: 13px 32px;
-  border-radius: 50px;
-  font-size: 15px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.2s;
-  font-family: 'Nunito', sans-serif;
-  cursor: pointer;
-  border: none;
-  display: inline-block;
+  padding: 13px 30px; border-radius: 8px;
+  font-size: 14px; font-weight: 600;
+  text-decoration: none; transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer; border: none;
+  display: inline-block; letter-spacing: 0.02em;
 }
+.btn-primary { background: var(--navy); color: white; }
+.btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+.btn-outline { background: white; color: var(--navy); border: 1.5px solid var(--border); }
+.btn-outline:hover { border-color: var(--navy); transform: translateY(-2px); }
 
-.btn-primary { background: var(--primary); color: white; }
-.btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
-.btn-outline { background: white; color: var(--primary); border: 2px solid var(--primary); }
-.btn-outline:hover { background: var(--primary-light); transform: translateY(-1px); }
-
-/* DIVIDER */
-.divider {
-  width: 60px;
-  height: 4px;
-  background: var(--primary);
-  border-radius: 2px;
-  margin: 0 auto 24px;
-}
-
-/* SECTIONS */
-section { padding: 80px 40px; }
+/* ───── SECTION COMMON ───── */
+section { padding: 90px 60px; }
 section:nth-child(even) { background: var(--light); }
+.section-inner { max-width: 1000px; margin: 0 auto; }
 
-.section-inner {
-  max-width: 960px;
-  margin: 0 auto;
+.section-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); text-align: center;
+  margin-bottom: 10px;
 }
-
 .section-title {
-  font-size: clamp(22px, 4vw, 34px);
-  font-weight: 800;
-  text-align: center;
-  margin-bottom: 12px;
-  color: var(--text);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 800; text-align: center;
+  color: var(--navy); margin-bottom: 16px;
+  letter-spacing: -0.5px;
 }
-
 .section-sub {
-  text-align: center;
-  color: var(--muted);
-  font-size: 17px;
-  max-width: 620px;
-  margin: 0 auto 48px;
+  text-align: center; color: var(--muted);
+  font-size: 16px; max-width: 580px;
+  margin: 0 auto 52px; line-height: 1.8;
+}
+.rule {
+  width: 48px; height: 3px;
+  background: var(--gold); border-radius: 2px;
+  margin: 0 auto 20px;
 }
 
-/* ABOUT */
-.about-text {
-  font-size: 18px;
-  color: var(--muted);
-  text-align: center;
-  max-width: 720px;
-  margin: 0 auto;
-  font-weight: 400;
-  line-height: 1.8;
+/* ───── ABOUT ───── */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  align-items: center;
 }
+.about-text-block p {
+  font-size: 17px; color: var(--slate);
+  line-height: 1.85; margin-bottom: 18px;
+}
+.about-text-block p:last-child { margin-bottom: 0; }
+.about-highlights {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.ah-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  border-left: 3px solid var(--gold);
+}
+.ah-item h4 { font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+.ah-item p { font-size: 13px; color: var(--muted); margin: 0; }
 
-/* SKILLS */
+/* ───── SKILLS ───── */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
-
 .skill-card {
-  background: white;
-  border-radius: 16px;
-  padding: 32px 28px;
-  text-align: center;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: var(--white); border-radius: var(--radius);
+  padding: 30px 26px;
+  border: 1px solid var(--border);
+  transition: all 0.25s;
+  position: relative; overflow: hidden;
 }
-
-.skill-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(108,99,255,0.12);
+.skill-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--gold); transform: scaleX(0);
+  transform-origin: left; transition: transform 0.25s;
 }
+.skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(15,23,42,0.08); border-color: transparent; }
+.skill-card:hover::after { transform: scaleX(1); }
 
-.skill-icon {
-  font-size: 40px;
-  margin-bottom: 16px;
-  display: block;
+.skill-icon-wrap {
+  width: 48px; height: 48px;
+  background: var(--gold-lt); border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 18px;
 }
-
-.skill-card h3 {
-  font-size: 20px;
-  font-weight: 800;
-  margin-bottom: 10px;
-  color: var(--text);
-}
-
-.skill-card p {
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-
+.skill-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+.skill-card > p { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; line-height: 1.6; }
 .skill-label {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 8px;
-  display: block;
+  font-size: 11px; font-weight: 600;
+  color: var(--gold-dk); text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 10px; display: block;
 }
-
-.skill-tags-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
-}
-
+.skill-tags-list { display: flex; flex-wrap: wrap; gap: 6px; }
 .stag {
-  background: var(--primary-light);
-  color: var(--primary);
-  font-size: 12px;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 50px;
+  background: var(--light); color: var(--slate);
+  font-size: 12px; font-weight: 500;
+  padding: 4px 11px; border-radius: 5px;
+  border: 1px solid var(--border);
 }
 
-/* PROJECTS */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+/* ───── STATS ───── */
+.stats-section { background: var(--navy) !important; }
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0; }
+.stat-item {
+  text-align: center; padding: 50px 20px;
+  border-right: 1px solid rgba(255,255,255,0.08);
 }
-
-.project-card {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 36px rgba(108,99,255,0.14);
-}
-
-.project-thumb {
-  width: 100%;
-  height: 160px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 48px;
-}
-
-.project-body { padding: 20px 24px 24px; }
-
-.project-body h3 {
-  font-size: 17px;
-  font-weight: 800;
-  margin-bottom: 6px;
-}
-
-.project-body p {
-  color: var(--muted);
-  font-size: 14px;
-  margin-bottom: 16px;
-  line-height: 1.5;
-}
-
-.project-stack-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 16px;
-}
-
-.ptag {
-  background: var(--light);
-  color: var(--primary);
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 50px;
-  border: 1px solid #e0ddff;
-}
-
-.project-link {
-  color: var(--primary);
-  font-weight: 700;
-  font-size: 14px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.project-link:hover { text-decoration: underline; }
-
-/* STATS */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 24px;
-  text-align: center;
-}
-
+.stat-item:last-child { border-right: none; }
 .stat-item h2 {
-  font-size: 40px;
-  font-weight: 800;
-  color: var(--primary);
-  line-height: 1;
-  margin-bottom: 6px;
+  font-family: 'Playfair Display', serif;
+  font-size: 46px; font-weight: 800;
+  color: var(--gold); line-height: 1; margin-bottom: 8px;
 }
+.stat-item p { color: rgba(255,255,255,0.55); font-size: 14px; font-weight: 500; letter-spacing: 0.02em; }
 
-.stat-item p {
-  color: var(--muted);
-  font-size: 15px;
-  font-weight: 600;
+/* ───── PROJECTS ───── */
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 22px;
 }
+.project-card {
+  background: var(--white); border-radius: var(--radius);
+  overflow: hidden; border: 1px solid var(--border);
+  transition: all 0.25s;
+}
+.project-card:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(15,23,42,0.10); border-color: transparent; }
+.project-thumb {
+  width: 100%; height: 148px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 44px; position: relative; overflow: hidden;
+}
+.project-thumb-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 100%);
+}
+.project-body { padding: 22px 24px 26px; }
+.project-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+.project-body p { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; line-height: 1.6; }
+.project-stack-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
+.ptag {
+  background: var(--light); color: var(--slate);
+  font-size: 11.5px; font-weight: 500;
+  padding: 3px 10px; border-radius: 5px;
+  border: 1px solid var(--border);
+}
+.project-link {
+  color: var(--gold-dk); font-weight: 600; font-size: 13.5px;
+  text-decoration: none; display: inline-flex;
+  align-items: center; gap: 5px;
+  transition: gap 0.2s;
+}
+.project-link:hover { gap: 9px; }
 
-/* TESTIMONIALS */
+/* ───── TESTIMONIALS ───── */
 .testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
-
 .testimonial-card {
-  background: white;
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  background: var(--white); border-radius: var(--radius);
+  padding: 30px 28px; border: 1px solid var(--border);
   position: relative;
 }
-
-.testimonial-card::before {
-  content: '"';
-  font-size: 80px;
-  color: var(--primary-light);
-  position: absolute;
-  top: 10px;
-  left: 20px;
-  line-height: 1;
-  font-family: Georgia, serif;
+.tquote {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px; line-height: 1;
+  color: var(--gold); opacity: 0.3;
+  position: absolute; top: 14px; left: 22px;
+  user-select: none;
 }
-
 .testimonial-text {
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.7;
-  margin-bottom: 20px;
-  padding-top: 32px;
+  color: var(--slate); font-size: 15px; line-height: 1.75;
+  margin-bottom: 22px; padding-top: 28px;
 }
-
-.testimonial-author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
+.testimonial-author { display: flex; align-items: center; gap: 14px; }
 .author-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--primary-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--primary);
-  flex-shrink: 0;
-  font-size: 16px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--navy2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; color: var(--gold);
+  flex-shrink: 0; letter-spacing: 0.04em;
 }
+.author-name { font-weight: 700; font-size: 14px; color: var(--navy); }
+.author-role { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
 
-.author-name {
-  font-weight: 800;
-  font-size: 15px;
-}
-
-.author-role {
-  font-size: 13px;
-  color: var(--muted);
-}
-
-/* CTA */
+/* ───── CTA ───── */
 .cta-section {
-  background: var(--primary);
-  color: black;
-  text-align: center;
-  padding: 80px 40px;
+  background: var(--navy) !important;
+  text-align: center; padding: 90px 60px !important;
+  position: relative; overflow: hidden;
 }
-
+.cta-section::before {
+  content: '';
+  position: absolute; top: -80px; right: -80px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
 .cta-section h2 {
-  font-size: clamp(24px, 4vw, 38px);
-  font-weight: 800;
-  margin-bottom: 12px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+  color: white; margin-bottom: 14px; letter-spacing: -0.5px;
 }
-
-.cta-section p {
-  font-size: 18px;
-  opacity: 0.85;
-  margin-bottom: 32px;
+.cta-section p { font-size: 17px; color: rgba(255,255,255,0.55); margin-bottom: 36px; }
+.btn-gold {
+  background: var(--gold); color: white;
+  padding: 15px 38px; border-radius: 8px;
+  font-size: 15px; font-weight: 700; text-decoration: none;
+  display: inline-block; transition: all 0.2s; letter-spacing: 0.02em;
 }
+.btn-gold:hover { background: var(--gold-dk); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201,168,76,0.35); }
 
-.btn-white {
-  background: white;
-  color: var(--primary);
-  padding: 14px 36px;
-  border-radius: 50px;
-  font-size: 16px;
-  font-weight: 800;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.2s;
-}
-
-.btn-white:hover { opacity: 0.9; transform: translateY(-1px); }
-
-/* FOOTER */
+/* ───── FOOTER ───── */
 footer {
-  background: #1a1a2e;
-  color: rgba(255,255,255,0.7);
-  text-align: center;
-  padding: 40px;
+  background: #080d18;
+  color: rgba(255,255,255,0.45);
+  text-align: center; padding: 44px 40px;
 }
-
 .footer-logo {
-  font-size: 22px;
-  font-weight: 800;
-  color: white;
-  margin-bottom: 16px;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 800;
+  color: white; margin-bottom: 18px;
 }
-
+.footer-logo span { color: var(--gold); }
 .footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  display: flex; justify-content: center;
+  gap: 28px; margin-bottom: 24px; flex-wrap: wrap;
 }
-
 .footer-links a {
-  color: rgba(255,255,255,0.6);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
+  color: rgba(255,255,255,0.45); text-decoration: none;
+  font-size: 13px; font-weight: 500;
   transition: color 0.2s;
 }
+.footer-links a:hover { color: var(--gold); }
+.footer-divider {
+  width: 40px; height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin: 0 auto 20px;
+}
+.footer-copy { font-size: 12px; opacity: 0.4; }
 
-.footer-links a:hover { color: white; }
-
-.footer-copy {
-  font-size: 13px;
-  opacity: 0.5;
+/* ───── RESPONSIVE ───── */
+@media (max-width: 768px) {
+  nav { padding: 0 24px; }
+  section { padding: 70px 24px; }
+  .hero { padding: 110px 24px 70px; }
+  .cta-section { padding: 70px 24px !important; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-highlights { grid-template-columns: 1fr 1fr; }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .stat-item:last-child { border-bottom: none; }
+  .nav-links { gap: 18px; }
 }
 
-/* Photo upload */
-#photoInput { display: none; }
-.avatar-wrap { position: relative; display: inline-block; cursor: pointer; }
-.avatar-wrap:hover .avatar-overlay { opacity: 1; }
-.avatar-overlay {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: rgba(108,99,255,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s;
-  color: white;
-  font-size: 13px;
-  font-weight: 700;
+/* ───── ANIMATIONS ───── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-
-@media (max-width: 640px) {
-  nav { padding: 0 20px; }
-  .nav-links { gap: 16px; }
-  section { padding: 60px 20px; }
-  .hero { padding: 120px 20px 60px; }
-}
+.hero > * { animation: fadeUp 0.55s ease both; }
+.hero > *:nth-child(1) { animation-delay: 0.05s; }
+.hero > *:nth-child(2) { animation-delay: 0.15s; }
+.hero > *:nth-child(3) { animation-delay: 0.25s; }
+.hero > *:nth-child(4) { animation-delay: 0.32s; }
+.hero > *:nth-child(5) { animation-delay: 0.38s; }
+.hero > *:nth-child(6) { animation-delay: 0.44s; }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">Anwar Hossain</a>
+  <a class="nav-logo" href="#">Anwar <span>Hossain</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact" class="nav-cta">Say Hello</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <label for="photoInput" class="avatar-wrap" title="Click to upload your photo">
-    <img id="heroPhoto" src="photo.jpg" alt="Anwar Hossain"
-      class="hero-avatar"
-      onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';">
-    <div id="avatarFallback" class="hero-avatar-placeholder" style="display:none;">👤</div>
-    <div class="avatar-overlay">📷 Change</div>
-    <input type="file" id="photoInput" accept="image/*" onchange="handlePhoto(event)">
-  </label>
+  <img
+    id="heroPhoto"
+    src="photo.jpg"
+    alt="Anwar Hossain"
+    class="hero-avatar"
+    onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';"
+  >
+  <div id="avatarFallback" class="hero-avatar-placeholder" style="display:none;">👤</div>
 
-  <h1>Odoo Developer &<br><span>Python Engineer</span></h1>
-  <p class="tagline">I build powerful ERP solutions, REST APIs, and AI automation tools — and I love what I do.</p>
+  <div class="hero-badge">Available for Work</div>
+  <h1>Odoo Developer &amp;<br><em>Python Engineer</em></h1>
+  <p class="tagline">Building powerful ERP systems, scalable REST APIs, and intelligent automation tools that drive real business value.</p>
   <div class="hero-btns">
-    <a href="https://github.com/AnwarHossain909" target="_blank" class="btn btn-primary">View GitHub ↗</a>
+    <a href="https://github.com/AnwarHossain909" target="_blank" class="btn btn-primary">GitHub Profile ↗</a>
     <a href="#contact" class="btn btn-outline">Get In Touch</a>
   </div>
 </section>
@@ -557,114 +460,105 @@ footer {
 <!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
-    <h2 class="section-title">Hi, I'm Anwar. Nice to meet you.</h2>
-    <div class="divider"></div>
-    <p class="about-text">
-      Since beginning my journey as an Odoo Developer at BDCalling IT Ltd in Dhaka, I've built custom ERP modules, designed scalable REST APIs with Django, and created AI automation pipelines. I'm quietly confident, naturally curious, and passionate about solving real business problems with clean, efficient code. With 52+ GitHub repositories, I'm always learning and building.
-    </p>
+    <p class="section-eyebrow">About Me</p>
+    <h2 class="section-title">Engineer. Builder. Problem Solver.</h2>
+    <div class="rule"></div>
+    <div class="about-grid">
+      <div class="about-text-block">
+        <p>I'm an Odoo Developer and Python Engineer based in Dhaka, Bangladesh, currently working at BDCalling IT Ltd. I specialize in building custom ERP modules, scalable REST APIs with Django, and intelligent AI automation pipelines.</p>
+        <p>I'm quietly confident, naturally curious, and passionate about transforming real business challenges into clean, efficient software. With 52+ GitHub repositories, I'm always learning and building — one commit at a time.</p>
+      </div>
+      <div class="about-highlights">
+        <div class="ah-item"><h4>1–2</h4><p>Years Experience</p></div>
+        <div class="ah-item"><h4>52+</h4><p>GitHub Repos</p></div>
+        <div class="ah-item"><h4>8+</h4><p>Odoo Modules</p></div>
+        <div class="ah-item"><h4>6</h4><p>Core Skills</p></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-inner">
-    <h2 class="section-title">What I Do</h2>
-    <div class="divider"></div>
-    <p class="section-sub">I specialize in backend development with a focus on ERP systems, API development, and intelligent automation.</p>
+    <p class="section-eyebrow">Expertise</p>
+    <h2 class="section-title">What I Bring to the Table</h2>
+    <div class="rule"></div>
+    <p class="section-sub">Specialized in backend development, ERP systems, API engineering, and intelligent automation — built for production, designed to scale.</p>
     <div class="skills-grid">
 
       <div class="skill-card">
-        <span class="skill-icon">⚙️</span>
-        <h3>Odoo Developer</h3>
-        <p>I build and customize Odoo ERP modules for real business needs — from accounting to HR.</p>
-        <span class="skill-label">Things I work with:</span>
+        <div class="skill-icon-wrap">⚙️</div>
+        <h3>Odoo Development</h3>
+        <p>Custom ERP modules built to match exact business requirements — from accounting to HR, with clean architecture and solid ORM.</p>
+        <span class="skill-label">Technologies</span>
         <div class="skill-tags-list">
-          <span class="stag">Custom Modules</span>
-          <span class="stag">ORM</span>
-          <span class="stag">XML Views</span>
-          <span class="stag">QWeb Reports</span>
-          <span class="stag">Wizards</span>
-          <span class="stag">Access Rights</span>
-          <span class="stag">Workflows</span>
-          <span class="stag">Odoo 16/17</span>
+          <span class="stag">Custom Modules</span><span class="stag">ORM</span>
+          <span class="stag">XML Views</span><span class="stag">QWeb Reports</span>
+          <span class="stag">Wizards</span><span class="stag">Access Rights</span>
+          <span class="stag">Workflows</span><span class="stag">Odoo 16/17</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <span class="skill-icon">🐍</span>
-        <h3>Python & API Dev</h3>
-        <p>I enjoy building robust backend systems and REST APIs from scratch using Python and Django.</p>
-        <span class="skill-label">Languages & Tools:</span>
+        <div class="skill-icon-wrap">🐍</div>
+        <h3>Python &amp; API Development</h3>
+        <p>Robust backend systems and REST APIs built from scratch with Python and Django — clean, documented, and production-ready.</p>
+        <span class="skill-label">Technologies</span>
         <div class="skill-tags-list">
-          <span class="stag">Python 3.x</span>
-          <span class="stag">Django</span>
-          <span class="stag">DRF</span>
-          <span class="stag">JWT Auth</span>
-          <span class="stag">Celery</span>
-          <span class="stag">REST API</span>
-          <span class="stag">JSON-RPC</span>
-          <span class="stag">Postman</span>
+          <span class="stag">Python 3.x</span><span class="stag">Django</span>
+          <span class="stag">DRF</span><span class="stag">JWT Auth</span>
+          <span class="stag">Celery</span><span class="stag">REST API</span>
+          <span class="stag">JSON-RPC</span><span class="stag">Postman</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <span class="skill-icon">🗄️</span>
-        <h3>Database Engineer</h3>
-        <p>I design efficient database schemas and write complex queries for high-performance applications.</p>
-        <span class="skill-label">Tools:</span>
+        <div class="skill-icon-wrap">🗄️</div>
+        <h3>Database Engineering</h3>
+        <p>Efficient schema design and complex query optimization for high-performance, data-intensive applications.</p>
+        <span class="skill-label">Technologies</span>
         <div class="skill-tags-list">
-          <span class="stag">PostgreSQL</span>
-          <span class="stag">Complex Queries</span>
-          <span class="stag">Joins & Indexes</span>
-          <span class="stag">Stored Procedures</span>
-          <span class="stag">pgAdmin</span>
-          <span class="stag">SQLite</span>
+          <span class="stag">PostgreSQL</span><span class="stag">Complex Queries</span>
+          <span class="stag">Joins &amp; Indexes</span><span class="stag">Stored Procedures</span>
+          <span class="stag">pgAdmin</span><span class="stag">SQLite</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <span class="skill-icon">🕷️</span>
+        <div class="skill-icon-wrap">🕷️</div>
         <h3>Web Scraping</h3>
-        <p>I extract valuable data from the web using modern scraping tools and build automated pipelines.</p>
-        <span class="skill-label">Tools:</span>
+        <p>Automated data extraction pipelines using modern scraping frameworks with scheduled crawling and structured storage.</p>
+        <span class="skill-label">Technologies</span>
         <div class="skill-tags-list">
-          <span class="stag">BeautifulSoup</span>
-          <span class="stag">Scrapy</span>
-          <span class="stag">Selenium</span>
-          <span class="stag">Playwright</span>
-          <span class="stag">XPath / CSS</span>
-          <span class="stag">Data Extraction</span>
+          <span class="stag">BeautifulSoup</span><span class="stag">Scrapy</span>
+          <span class="stag">Selenium</span><span class="stag">Playwright</span>
+          <span class="stag">XPath / CSS</span><span class="stag">Data Extraction</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <span class="skill-icon">🤖</span>
+        <div class="skill-icon-wrap">🤖</div>
         <h3>AI Automation</h3>
-        <p>I build intelligent automation workflows using LLMs, OpenAI API and LangChain to save time and boost productivity.</p>
-        <span class="skill-label">Tools:</span>
+        <p>Intelligent automation workflows powered by LLMs and LangChain — saving time and boosting productivity at scale.</p>
+        <span class="skill-label">Technologies</span>
         <div class="skill-tags-list">
-          <span class="stag">OpenAI API</span>
-          <span class="stag">LangChain</span>
-          <span class="stag">Prompt Engineering</span>
-          <span class="stag">AI Workflows</span>
+          <span class="stag">OpenAI API</span><span class="stag">LangChain</span>
+          <span class="stag">Prompt Engineering</span><span class="stag">AI Workflows</span>
           <span class="stag">Chatbot Dev</span>
         </div>
       </div>
 
       <div class="skill-card">
-        <span class="skill-icon">📦</span>
-        <h3>Odoo Modules</h3>
-        <p>Deep hands-on experience across the full Odoo ecosystem for enterprise clients.</p>
-        <span class="skill-label">Modules:</span>
+        <div class="skill-icon-wrap">📦</div>
+        <h3>Odoo Ecosystem</h3>
+        <p>Deep hands-on experience across the full suite of Odoo enterprise modules, deployed for real clients.</p>
+        <span class="skill-label">Modules</span>
         <div class="skill-tags-list">
-          <span class="stag">Sales</span>
-          <span class="stag">Purchase</span>
-          <span class="stag">Inventory</span>
-          <span class="stag">Accounting</span>
-          <span class="stag">HR & Payroll</span>
-          <span class="stag">CRM</span>
-          <span class="stag">Project</span>
-          <span class="stag">POS</span>
+          <span class="stag">Sales</span><span class="stag">Purchase</span>
+          <span class="stag">Inventory</span><span class="stag">Accounting</span>
+          <span class="stag">HR &amp; Payroll</span><span class="stag">CRM</span>
+          <span class="stag">Project</span><span class="stag">POS</span>
         </div>
       </div>
 
@@ -673,7 +567,7 @@ footer {
 </section>
 
 <!-- STATS -->
-<section>
+<section class="stats-section">
   <div class="section-inner">
     <div class="stats-row">
       <div class="stat-item"><h2>1–2</h2><p>Years of Experience</p></div>
@@ -687,16 +581,17 @@ footer {
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-inner">
-    <h2 class="section-title">My Recent Work</h2>
-    <div class="divider"></div>
-    <p class="section-sub">Here are some projects I've worked on. Want to see more? <a href="https://github.com/AnwarHossain909" target="_blank" style="color:var(--primary);font-weight:700;">Check my GitHub</a>.</p>
+    <p class="section-eyebrow">Portfolio</p>
+    <h2 class="section-title">Recent Work</h2>
+    <div class="rule"></div>
+    <p class="section-sub">A selection of projects I've built and delivered. <a href="https://github.com/AnwarHossain909" target="_blank" style="color:var(--gold-dk);font-weight:600;">View all on GitHub →</a></p>
     <div class="projects-grid">
 
       <div class="project-card">
-        <div class="project-thumb" style="background:#f0eeff;">⚙️</div>
+        <div class="project-thumb" style="background:#f0eeff;"><span>⚙️</span><div class="project-thumb-overlay"></div></div>
         <div class="project-body">
           <h3>Custom Odoo ERP Module</h3>
-          <p>End-to-end custom module with inherited models, wizards, QWeb reports and business logic automation for enterprise clients.</p>
+          <p>End-to-end custom module with inherited models, wizards, QWeb reports, and business logic automation for enterprise clients.</p>
           <div class="project-stack-row">
             <span class="ptag">Odoo</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span><span class="ptag">XML</span>
           </div>
@@ -705,10 +600,10 @@ footer {
       </div>
 
       <div class="project-card">
-        <div class="project-thumb" style="background:#e8f9f4;">🔗</div>
+        <div class="project-thumb" style="background:#e8f9f4;"><span>🔗</span><div class="project-thumb-overlay"></div></div>
         <div class="project-body">
           <h3>Django REST API System</h3>
-          <p>Full-featured REST API backend with JWT authentication, DRF serializers, viewsets, permissions and Celery async tasks.</p>
+          <p>Full-featured REST API backend with JWT authentication, DRF serializers, viewsets, permissions, and Celery async tasks.</p>
           <div class="project-stack-row">
             <span class="ptag">Django</span><span class="ptag">DRF</span><span class="ptag">JWT</span><span class="ptag">PostgreSQL</span>
           </div>
@@ -717,7 +612,7 @@ footer {
       </div>
 
       <div class="project-card">
-        <div class="project-thumb" style="background:#fff8e8;">🕷️</div>
+        <div class="project-thumb" style="background:#fff8e8;"><span>🕷️</span><div class="project-thumb-overlay"></div></div>
         <div class="project-body">
           <h3>Web Scraping Pipeline</h3>
           <p>Automated data extraction pipeline using Scrapy and Selenium with PostgreSQL storage and scheduled crawling.</p>
@@ -729,7 +624,7 @@ footer {
       </div>
 
       <div class="project-card">
-        <div class="project-thumb" style="background:#ffeef8;">🤖</div>
+        <div class="project-thumb" style="background:#fdf2fb;"><span>🤖</span><div class="project-thumb-overlay"></div></div>
         <div class="project-body">
           <h3>AI Chatbot Automation</h3>
           <p>AI-powered automation tool using OpenAI API and LangChain for intelligent workflow processing and task automation.</p>
@@ -741,10 +636,10 @@ footer {
       </div>
 
       <div class="project-card">
-        <div class="project-thumb" style="background:#e8f0ff;">📊</div>
+        <div class="project-thumb" style="background:#e8f0ff;"><span>📊</span><div class="project-thumb-overlay"></div></div>
         <div class="project-body">
-          <h3>HR & Payroll System</h3>
-          <p>Custom Odoo HR module with attendance tracking, leave management and fully automated payroll calculation.</p>
+          <h3>HR &amp; Payroll System</h3>
+          <p>Custom Odoo HR module with attendance tracking, leave management, and fully automated payroll calculation.</p>
           <div class="project-stack-row">
             <span class="ptag">Odoo HR</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span>
           </div>
@@ -753,10 +648,10 @@ footer {
       </div>
 
       <div class="project-card">
-        <div class="project-thumb" style="background:#eafff5;">🔄</div>
+        <div class="project-thumb" style="background:#eafff5;"><span>🔄</span><div class="project-thumb-overlay"></div></div>
         <div class="project-body">
           <h3>Odoo API Integration</h3>
-          <p>Third-party service integration with Odoo using JSON-RPC, webhook handling and real-time data synchronization.</p>
+          <p>Third-party service integration with Odoo using JSON-RPC, webhook handling, and real-time data synchronization.</p>
           <div class="project-stack-row">
             <span class="ptag">Odoo</span><span class="ptag">REST API</span><span class="ptag">JSON-RPC</span>
           </div>
@@ -771,53 +666,64 @@ footer {
 <!-- TESTIMONIALS -->
 <section>
   <div class="section-inner">
-    <h2 class="section-title">What People Say</h2>
-    <div class="divider"></div>
+    <p class="section-eyebrow">Testimonials</p>
+    <h2 class="section-title">What Colleagues Say</h2>
+    <div class="rule"></div>
+    <div style="margin-bottom:48px;"></div>
     <div class="testimonials-grid">
+
       <div class="testimonial-card">
+        <div class="tquote">"</div>
         <p class="testimonial-text">Anwar delivered exceptional Odoo customizations on time. His deep understanding of Python ORM and business workflows made the project a huge success.</p>
         <div class="testimonial-author">
-          <div class="author-avatar">RM</div>
+          <div class="author-avatar">FM</div>
           <div>
             <div class="author-name">Forid Mondol</div>
             <div class="author-role">Project Manager, BDCalling IT Ltd</div>
           </div>
         </div>
       </div>
+
       <div class="testimonial-card">
-        <p class="testimonial-text">His Django REST API work was clean, well-documented and scalable. Anwar is a clear communicator who truly understands backend architecture.</p>
+        <div class="tquote">"</div>
+        <p class="testimonial-text">His Django REST API work was clean, well-documented, and scalable. Anwar is a clear communicator who truly understands backend architecture.</p>
         <div class="testimonial-author">
-          <div class="author-avatar">SK</div>
+          <div class="author-avatar">SM</div>
           <div>
             <div class="author-name">Sayedul Morsalin</div>
             <div class="author-role">Senior Developer, Tech Team</div>
           </div>
         </div>
       </div>
+
       <div class="testimonial-card">
+        <div class="tquote">"</div>
         <p class="testimonial-text">The web scraping pipeline Anwar built for us saved countless hours of manual work. Reliable, efficient, and exactly what we needed.</p>
         <div class="testimonial-author">
-          <div class="author-avatar">NA</div>
+          <div class="author-avatar">NH</div>
           <div>
             <div class="author-name">Nadim Hossain</div>
             <div class="author-role">Product Lead</div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section" id="contact">
-  <h2>Interested in working together?</h2>
-  <p>I'm always open to discussing new projects, Odoo work, or partnership opportunities.</p>
-  <a href="mailto:your@email.com" class="btn-white">Start a Conversation ✉</a>
+  <div class="section-inner" style="position:relative;z-index:1;">
+    <h2>Let's Build Something Great</h2>
+    <p>Open to new projects, Odoo consulting, and collaboration opportunities.</p>
+    <a href="mailto:your@email.com" class="btn-gold">Start a Conversation ✉</a>
+  </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Anwar Hossain</div>
+  <div class="footer-logo">Anwar <span>Hossain</span></div>
   <div class="footer-links">
     <a href="https://github.com/AnwarHossain909" target="_blank">GitHub</a>
     <a href="mailto:your@email.com">Email</a>
@@ -826,23 +732,9 @@ footer {
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
   </div>
-  <p class="footer-copy">Handcrafted by Anwar Hossain · Dhaka, Bangladesh · 2025</p>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">Crafted by Anwar Hossain · Dhaka, Bangladesh · 2025</p>
 </footer>
 
-<script>
-function handlePhoto(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(ev) {
-    const img = document.getElementById('heroPhoto');
-    const fallback = document.getElementById('avatarFallback');
-    img.src = ev.target.result;
-    img.style.display = 'block';
-    fallback.style.display = 'none';
-  };
-  reader.readAsDataURL(file);
-}
-</script>
 </body>
 </html>
