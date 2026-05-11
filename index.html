@@ -3,425 +3,326 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anwar Hossain | Odoo Developer & Python Backend Dev</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Anwar Hossain | Odoo Developer & Python Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --navy:    #0f172a;
-  --navy2:   #1e293b;
-  --slate:   #334155;
-  --muted:   #64748b;
-  --border:  #e2e8f0;
-  --light:   #f8fafc;
-  --white:   #ffffff;
-  --gold:    #c9a84c;
-  --gold-lt: #fdf6e7;
-  --gold-dk: #a8882e;
-  --radius:  14px;
-}
+  --navy:   #0f172a;
+  --navy2:  #1e293b;
+  --slate:  #334155;
+  --muted:  #64748b;
+  --border: #e2e8f0;
+  --light:  #f8fafc;
+  --white:  #ffffff;
 
+  /* Vibrant palette — rich but not eye-straining */
+  --indigo:   #4f46e5;
+  --violet:   #7c3aed;
+  --sky:      #0284c7;
+  --teal:     #0d9488;
+  --emerald:  #059669;
+  --amber:    #d97706;
+  --rose:     #e11d48;
+  --fuchsia:  #a21caf;
+
+  --indigo-lt:  #eef2ff;
+  --violet-lt:  #f5f3ff;
+  --sky-lt:     #e0f2fe;
+  --teal-lt:    #f0fdfa;
+  --emerald-lt: #ecfdf5;
+  --amber-lt:   #fffbeb;
+  --rose-lt:    #fff1f2;
+  --fuchsia-lt: #fdf4ff;
+
+  --radius: 16px;
+}
 html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; color: var(--navy); background: var(--white); font-size: 16px; line-height: 1.7; }
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  color: var(--navy);
-  background: var(--white);
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-/* ───── NAV ───── */
+/* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0;
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  z-index: 100;
-  padding: 0 60px;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 68px;
+  z-index: 100; padding: 0 60px;
+  display: flex; align-items: center; justify-content: space-between; height: 68px;
 }
 .nav-logo {
   font-family: 'Playfair Display', serif;
-  font-weight: 800; font-size: 20px;
-  color: var(--navy); text-decoration: none;
-  letter-spacing: -0.3px;
+  font-weight: 800; font-size: 21px; color: var(--navy); text-decoration: none;
 }
-.nav-logo span { color: var(--gold); }
+.nav-logo span { color: var(--indigo); }
 .nav-links { display: flex; gap: 36px; list-style: none; }
-.nav-links a {
-  color: var(--muted); text-decoration: none;
-  font-weight: 500; font-size: 14px;
-  letter-spacing: 0.02em;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--navy); }
+.nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 14px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--indigo); }
 .nav-cta {
-  background: var(--navy) !important;
-  color: white !important;
-  padding: 9px 22px;
-  border-radius: 8px;
-  font-weight: 600 !important;
-  font-size: 13px !important;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  transition: background 0.2s !important;
+  background: linear-gradient(135deg, var(--indigo), var(--violet)) !important;
+  color: white !important; padding: 9px 22px; border-radius: 8px;
+  font-weight: 600 !important; font-size: 13px !important;
+  box-shadow: 0 4px 14px rgba(79,70,229,0.28);
+  transition: opacity 0.2s, transform 0.2s !important;
 }
-.nav-cta:hover { background: var(--gold) !important; color: white !important; }
+.nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
 
-/* ───── HERO ───── */
+/* ── HERO ── */
 .hero {
-  padding: 130px 60px 90px;
-  display: flex; align-items: center; justify-content: center; flex-direction: column;
-  text-align: center;
-  background: var(--light);
+  padding: 128px 60px 88px; text-align: center;
+  background: linear-gradient(160deg, #f0f4ff 0%, #faf5ff 40%, #f0fdff 100%);
   position: relative; overflow: hidden;
 }
 .hero::before {
-  content: '';
-  position: absolute; top: -60px; right: -80px;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  content: ''; position: absolute; top: -120px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(124,58,237,0.09) 0%, transparent 65%);
   pointer-events: none;
 }
 .hero::after {
-  content: '';
-  position: absolute; bottom: -40px; left: -60px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(15,23,42,0.04) 0%, transparent 70%);
+  content: ''; position: absolute; bottom: -80px; left: -80px;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(2,132,199,0.08) 0%, transparent 65%);
   pointer-events: none;
 }
 
-.hero-avatar {
-  width: 130px; height: 130px;
-  border-radius: 50%;
-  object-fit: cover; object-position: center top;
-  border: 4px solid var(--white);
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-  margin-bottom: 28px;
-  display: block;
-  box-shadow: 0 8px 32px rgba(15,23,42,0.14);
+.avatar-ring {
+  width: 148px; height: 148px; border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--indigo), var(--violet), var(--sky));
+  display: inline-block; margin-bottom: 28px;
+  box-shadow: 0 8px 32px rgba(79,70,229,0.22);
 }
-.hero-avatar-placeholder {
-  width: 130px; height: 130px;
-  border-radius: 50%;
-  background: var(--gold-lt);
-  border: 4px solid white;
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-  margin: 0 auto 28px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 52px;
-  box-shadow: 0 8px 32px rgba(15,23,42,0.14);
+.avatar-inner {
+  width: 140px; height: 140px; border-radius: 50%;
+  overflow: hidden; background: var(--violet-lt);
+  border: 3px solid white;
 }
+.avatar-inner img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
 
 .hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--gold-lt);
-  border: 1px solid rgba(201,168,76,0.35);
-  color: var(--gold-dk);
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 6px 16px; border-radius: 50px;
-  margin-bottom: 20px;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: white; border: 1.5px solid rgba(79,70,229,0.2);
+  color: var(--indigo); font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 6px 18px; border-radius: 50px; margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(79,70,229,0.08);
 }
-.hero-badge::before { content: '●'; font-size: 8px; color: var(--gold); }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--emerald); animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
 
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 5.5vw, 58px);
-  font-weight: 800; line-height: 1.15;
-  color: var(--navy); margin-bottom: 20px;
-  letter-spacing: -1px;
+  font-size: clamp(32px, 5.5vw, 58px); font-weight: 800;
+  line-height: 1.13; color: var(--navy); margin-bottom: 20px; letter-spacing: -1px;
 }
-.hero h1 em { font-style: normal; color: var(--gold); }
+.hero h1 em { font-style: normal; background: linear-gradient(135deg, var(--indigo) 0%, var(--violet) 50%, var(--sky) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-.hero p.tagline {
-  font-size: clamp(15px, 2vw, 18px);
-  color: var(--muted); max-width: 520px;
-  margin: 0 auto 36px; font-weight: 400; line-height: 1.8;
+.hero p.tagline { font-size: clamp(15px, 2vw, 18px); color: var(--muted); max-width: 520px; margin: 0 auto 36px; line-height: 1.8; }
+
+.hero-chips { display: flex; flex-wrap: wrap; gap: 9px; justify-content: center; margin-bottom: 38px; }
+.chip {
+  padding: 5px 14px; border-radius: 50px; font-size: 12.5px; font-weight: 600;
+  border: 1.5px solid; display: inline-flex; align-items: center; gap: 5px;
+  background: white;
 }
+.c-indigo  { color: var(--indigo);  border-color: rgba(79,70,229,0.3);  }
+.c-violet  { color: var(--violet);  border-color: rgba(124,58,237,0.3); }
+.c-sky     { color: var(--sky);     border-color: rgba(2,132,199,0.3);  }
+.c-teal    { color: var(--teal);    border-color: rgba(13,148,136,0.3); }
+.c-amber   { color: var(--amber);   border-color: rgba(217,119,6,0.3);  }
+.c-fuchsia { color: var(--fuchsia); border-color: rgba(162,28,175,0.3); }
 
 .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn { padding: 13px 30px; border-radius: 10px; font-size: 14.5px; font-weight: 600; text-decoration: none; transition: all 0.22s; font-family: 'DM Sans', sans-serif; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 8px; }
+.btn-grad { background: linear-gradient(135deg, var(--indigo), var(--violet)); color: white; box-shadow: 0 4px 18px rgba(79,70,229,0.3); }
+.btn-grad:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(79,70,229,0.4); }
+.btn-outline { background: white; color: var(--indigo); border: 2px solid rgba(79,70,229,0.35); }
+.btn-outline:hover { border-color: var(--indigo); background: var(--indigo-lt); transform: translateY(-2px); }
 
-.btn {
-  padding: 13px 30px; border-radius: 8px;
-  font-size: 14px; font-weight: 600;
-  text-decoration: none; transition: all 0.2s;
-  font-family: 'DM Sans', sans-serif;
-  cursor: pointer; border: none;
-  display: inline-block; letter-spacing: 0.02em;
-}
-.btn-primary { background: var(--navy); color: white; }
-.btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
-.btn-outline { background: white; color: var(--navy); border: 1.5px solid var(--border); }
-.btn-outline:hover { border-color: var(--navy); transform: translateY(-2px); }
-
-/* ───── SECTION COMMON ───── */
+/* ── SECTION COMMON ── */
 section { padding: 90px 60px; }
-section:nth-child(even) { background: var(--light); }
-.section-inner { max-width: 1000px; margin: 0 auto; }
+.section-inner { max-width: 1020px; margin: 0 auto; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; margin-bottom: 10px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3.8vw, 40px); font-weight: 800; text-align: center; color: var(--navy); margin-bottom: 16px; letter-spacing: -0.5px; }
+.rule { width: 48px; height: 3px; border-radius: 2px; margin: 0 auto 20px; }
+.section-sub { text-align: center; color: var(--muted); font-size: 16px; max-width: 600px; margin: 0 auto 52px; line-height: 1.8; }
 
-.section-eyebrow {
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--gold); text-align: center;
-  margin-bottom: 10px;
+/* ── ABOUT ── */
+.about-bg { background: linear-gradient(160deg, #f8f9ff 0%, #f5f3ff 50%, #f0fdf4 100%); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.about-text p { font-size: 17px; color: var(--slate); line-height: 1.85; margin-bottom: 18px; }
+.about-text p:last-child { margin-bottom: 0; }
+.highlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.hl-card {
+  background: white; border-radius: var(--radius); padding: 22px;
+  border: 1px solid var(--border); border-left: 4px solid;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(24px, 4vw, 40px);
-  font-weight: 800; text-align: center;
-  color: var(--navy); margin-bottom: 16px;
-  letter-spacing: -0.5px;
-}
-.section-sub {
-  text-align: center; color: var(--muted);
-  font-size: 16px; max-width: 580px;
-  margin: 0 auto 52px; line-height: 1.8;
-}
-.rule {
-  width: 48px; height: 3px;
-  background: var(--gold); border-radius: 2px;
-  margin: 0 auto 20px;
-}
+.hl-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.hl-card:nth-child(1) { border-left-color: var(--indigo); }
+.hl-card:nth-child(2) { border-left-color: var(--violet); }
+.hl-card:nth-child(3) { border-left-color: var(--teal); }
+.hl-card:nth-child(4) { border-left-color: var(--emerald); }
+.hl-card h4 { font-size: 26px; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+.hl-card p { font-size: 13px; color: var(--muted); margin: 0; }
 
-/* ───── ABOUT ───── */
-.about-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-  align-items: center;
-}
-.about-text-block p {
-  font-size: 17px; color: var(--slate);
-  line-height: 1.85; margin-bottom: 18px;
-}
-.about-text-block p:last-child { margin-bottom: 0; }
-.about-highlights {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-}
-.ah-item {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px 22px;
-  border-left: 3px solid var(--gold);
-}
-.ah-item h4 { font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 4px; }
-.ah-item p { font-size: 13px; color: var(--muted); margin: 0; }
-
-/* ───── SKILLS ───── */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
+/* ── SKILLS ── */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 20px; }
 .skill-card {
-  background: var(--white); border-radius: var(--radius);
-  padding: 30px 26px;
-  border: 1px solid var(--border);
-  transition: all 0.25s;
-  position: relative; overflow: hidden;
+  background: white; border-radius: var(--radius); padding: 30px 26px;
+  border: 1px solid var(--border); position: relative; overflow: hidden;
+  transition: transform 0.22s, box-shadow 0.22s;
 }
-.skill-card::after {
-  content: '';
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 3px;
-  background: var(--gold); transform: scaleX(0);
-  transform-origin: left; transition: transform 0.25s;
-}
-.skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(15,23,42,0.08); border-color: transparent; }
-.skill-card:hover::after { transform: scaleX(1); }
+.skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: var(--radius) var(--radius) 0 0; }
+.skill-card.sk-indigo::before  { background: linear-gradient(90deg, var(--indigo), #818cf8); }
+.skill-card.sk-sky::before     { background: linear-gradient(90deg, var(--sky), #38bdf8); }
+.skill-card.sk-teal::before    { background: linear-gradient(90deg, var(--teal), #2dd4bf); }
+.skill-card.sk-amber::before   { background: linear-gradient(90deg, var(--amber), #fbbf24); }
+.skill-card.sk-fuchsia::before { background: linear-gradient(90deg, var(--fuchsia), #e879f9); }
+.skill-card.sk-emerald::before { background: linear-gradient(90deg, var(--emerald), #34d399); }
+.skill-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,0.09); border-color: transparent; }
 
-.skill-icon-wrap {
-  width: 48px; height: 48px;
-  background: var(--gold-lt); border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; margin-bottom: 18px;
+.sk-icon {
+  width: 50px; height: 50px; border-radius: 14px; display: flex;
+  align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px;
 }
-.skill-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
-.skill-card > p { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; line-height: 1.6; }
-.skill-label {
-  font-size: 11px; font-weight: 600;
-  color: var(--gold-dk); text-transform: uppercase;
-  letter-spacing: 0.1em; margin-bottom: 10px; display: block;
-}
-.skill-tags-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.ic-indigo  { background: var(--indigo-lt); }
+.ic-sky     { background: var(--sky-lt); }
+.ic-teal    { background: var(--teal-lt); }
+.ic-amber   { background: var(--amber-lt); }
+.ic-fuchsia { background: var(--fuchsia-lt); }
+.ic-emerald { background: var(--emerald-lt); }
+
+.skill-card h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.skill-card > p { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; line-height: 1.65; }
+.slabel { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; display: block; color: var(--muted); }
+.stag-row { display: flex; flex-wrap: wrap; gap: 6px; }
 .stag {
-  background: var(--light); color: var(--slate);
-  font-size: 12px; font-weight: 500;
-  padding: 4px 11px; border-radius: 5px;
-  border: 1px solid var(--border);
+  font-size: 11.5px; font-weight: 500; padding: 3px 11px;
+  border-radius: 50px; border: 1px solid; background: white;
 }
+.st-indigo  { color: var(--indigo);  border-color: rgba(79,70,229,0.25);  }
+.st-sky     { color: var(--sky);     border-color: rgba(2,132,199,0.25);  }
+.st-teal    { color: var(--teal);    border-color: rgba(13,148,136,0.25); }
+.st-amber   { color: var(--amber);   border-color: rgba(217,119,6,0.25);  }
+.st-fuchsia { color: var(--fuchsia); border-color: rgba(162,28,175,0.25); }
+.st-emerald { color: var(--emerald); border-color: rgba(5,150,105,0.25);  }
 
-/* ───── STATS ───── */
-.stats-section { background: var(--navy) !important; }
-.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0; }
-.stat-item {
-  text-align: center; padding: 50px 20px;
-  border-right: 1px solid rgba(255,255,255,0.08);
+/* ── STATS ── */
+.stats-bg {
+  background: linear-gradient(135deg, var(--navy) 0%, #1e1b4b 50%, #0c1a3a 100%);
 }
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.stat-item { text-align: center; padding: 52px 20px; border-right: 1px solid rgba(255,255,255,0.07); }
 .stat-item:last-child { border-right: none; }
-.stat-item h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 46px; font-weight: 800;
-  color: var(--gold); line-height: 1; margin-bottom: 8px;
-}
-.stat-item p { color: rgba(255,255,255,0.55); font-size: 14px; font-weight: 500; letter-spacing: 0.02em; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 800; line-height: 1; margin-bottom: 10px; }
+.stat-item p { color: rgba(255,255,255,0.5); font-size: 13.5px; font-weight: 500; }
+.sn1 { background: linear-gradient(135deg, #818cf8, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.sn2 { background: linear-gradient(135deg, #38bdf8, #67e8f9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.sn3 { background: linear-gradient(135deg, #34d399, #6ee7b7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.sn4 { background: linear-gradient(135deg, #fbbf24, #fde68a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-/* ───── PROJECTS ───── */
-.projects-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 22px;
+/* ── PROJECTS ── */
+.projects-bg { background: linear-gradient(160deg, #fafbff 0%, #f5f3ff 30%, #f0fdfa 100%); }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(295px, 1fr)); gap: 22px; }
+.proj-card {
+  background: white; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--border); transition: transform 0.22s, box-shadow 0.22s;
 }
-.project-card {
-  background: var(--white); border-radius: var(--radius);
-  overflow: hidden; border: 1px solid var(--border);
-  transition: all 0.25s;
+.proj-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(79,70,229,0.12); border-color: rgba(79,70,229,0.15); }
+.proj-thumb { height: 150px; display: flex; align-items: center; justify-content: center; font-size: 50px; position: relative; }
+.proj-body { padding: 22px 24px 26px; }
+.proj-body h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.proj-body p { color: var(--muted); font-size: 13.5px; line-height: 1.6; margin-bottom: 16px; }
+.ptag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
+.ptag { background: var(--light); color: var(--slate); font-size: 11.5px; font-weight: 500; padding: 3px 10px; border-radius: 5px; border: 1px solid var(--border); }
+.proj-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13.5px; font-weight: 600; text-decoration: none;
+  padding: 8px 18px; border-radius: 8px; border: 1.5px solid;
+  transition: all 0.2s;
 }
-.project-card:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(15,23,42,0.10); border-color: transparent; }
-.project-thumb {
-  width: 100%; height: 148px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 44px; position: relative; overflow: hidden;
-}
-.project-thumb-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 100%);
-}
-.project-body { padding: 22px 24px 26px; }
-.project-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
-.project-body p { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; line-height: 1.6; }
-.project-stack-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
-.ptag {
-  background: var(--light); color: var(--slate);
-  font-size: 11.5px; font-weight: 500;
-  padding: 3px 10px; border-radius: 5px;
-  border: 1px solid var(--border);
-}
-.project-link {
-  color: var(--gold-dk); font-weight: 600; font-size: 13.5px;
-  text-decoration: none; display: inline-flex;
-  align-items: center; gap: 5px;
-  transition: gap 0.2s;
-}
-.project-link:hover { gap: 9px; }
+.proj-link:hover { color: white; }
+.pl-indigo  { color: var(--indigo);  border-color: rgba(79,70,229,0.3);  }
+.pl-indigo:hover  { background: var(--indigo);  border-color: var(--indigo); }
+.pl-sky     { color: var(--sky);     border-color: rgba(2,132,199,0.3);  }
+.pl-sky:hover     { background: var(--sky);     border-color: var(--sky); }
+.pl-amber   { color: var(--amber);   border-color: rgba(217,119,6,0.3);  }
+.pl-amber:hover   { background: var(--amber);   border-color: var(--amber); }
+.pl-fuchsia { color: var(--fuchsia); border-color: rgba(162,28,175,0.3); }
+.pl-fuchsia:hover { background: var(--fuchsia); border-color: var(--fuchsia); }
+.pl-emerald { color: var(--emerald); border-color: rgba(5,150,105,0.3);  }
+.pl-emerald:hover { background: var(--emerald); border-color: var(--emerald); }
+.pl-teal    { color: var(--teal);    border-color: rgba(13,148,136,0.3); }
+.pl-teal:hover    { background: var(--teal);    border-color: var(--teal); }
 
-/* ───── TESTIMONIALS ───── */
-.testimonials-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+/* ── TESTIMONIALS ── */
+.t-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 20px; }
+.t-card {
+  background: white; border-radius: var(--radius); padding: 32px 28px;
+  border: 1px solid var(--border); position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-.testimonial-card {
-  background: var(--white); border-radius: var(--radius);
-  padding: 30px 28px; border: 1px solid var(--border);
-  position: relative;
-}
-.tquote {
-  font-family: 'Playfair Display', serif;
-  font-size: 56px; line-height: 1;
-  color: var(--gold); opacity: 0.3;
-  position: absolute; top: 14px; left: 22px;
-  user-select: none;
-}
-.testimonial-text {
-  color: var(--slate); font-size: 15px; line-height: 1.75;
-  margin-bottom: 22px; padding-top: 28px;
-}
-.testimonial-author { display: flex; align-items: center; gap: 14px; }
-.author-avatar {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: var(--navy2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 700; color: var(--gold);
-  flex-shrink: 0; letter-spacing: 0.04em;
-}
-.author-name { font-weight: 700; font-size: 14px; color: var(--navy); }
-.author-role { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+.t-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.07); }
+.t-card:nth-child(1) { border-top: 3px solid var(--indigo); }
+.t-card:nth-child(2) { border-top: 3px solid var(--teal); }
+.t-card:nth-child(3) { border-top: 3px solid var(--violet); }
+.tq { font-family: 'Playfair Display', serif; font-size: 60px; line-height: 1; opacity: 0.15; color: var(--indigo); position: absolute; top: 14px; left: 22px; user-select: none; }
+.t-text { font-size: 15px; color: var(--slate); line-height: 1.75; padding-top: 28px; margin-bottom: 20px; font-style: italic; }
+.t-stars { font-size: 14px; color: var(--amber); margin-bottom: 18px; letter-spacing: 2px; }
+.t-author { display: flex; align-items: center; gap: 14px; }
+.t-av { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: white; flex-shrink: 0; }
+.av1 { background: linear-gradient(135deg, var(--indigo), var(--violet)); }
+.av2 { background: linear-gradient(135deg, var(--teal), var(--emerald)); }
+.av3 { background: linear-gradient(135deg, var(--violet), var(--fuchsia)); }
+.t-name { font-weight: 700; font-size: 14.5px; color: var(--navy); }
+.t-role { font-size: 12.5px; color: var(--muted); }
 
-/* ───── CTA ───── */
+/* ── CTA ── */
 .cta-section {
-  background: var(--navy) !important;
-  text-align: center; padding: 90px 60px !important;
-  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--violet) 50%, #1d4ed8 100%);
+  padding: 92px 60px; text-align: center; position: relative; overflow: hidden;
 }
 .cta-section::before {
-  content: '';
-  position: absolute; top: -80px; right: -80px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.035'%3E%3Ccircle cx='40' cy='40' r='20'/%3E%3C/g%3E%3C/svg%3E");
   pointer-events: none;
 }
-.cta-section h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
-  color: white; margin-bottom: 14px; letter-spacing: -0.5px;
-}
-.cta-section p { font-size: 17px; color: rgba(255,255,255,0.55); margin-bottom: 36px; }
-.btn-gold {
-  background: var(--gold); color: white;
-  padding: 15px 38px; border-radius: 8px;
-  font-size: 15px; font-weight: 700; text-decoration: none;
-  display: inline-block; transition: all 0.2s; letter-spacing: 0.02em;
-}
-.btn-gold:hover { background: var(--gold-dk); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201,168,76,0.35); }
+.cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 44px); font-weight: 800; color: white; margin-bottom: 14px; letter-spacing: -0.5px; position: relative; }
+.cta-section p { font-size: 17px; color: rgba(255,255,255,0.75); margin-bottom: 36px; position: relative; }
+.btn-white { background: white; color: var(--indigo); padding: 15px 38px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.22s; position: relative; box-shadow: 0 8px 28px rgba(0,0,0,0.15); }
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
 
-/* ───── FOOTER ───── */
-footer {
-  background: #080d18;
-  color: rgba(255,255,255,0.45);
-  text-align: center; padding: 44px 40px;
-}
-.footer-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px; font-weight: 800;
-  color: white; margin-bottom: 18px;
-}
-.footer-logo span { color: var(--gold); }
-.footer-links {
-  display: flex; justify-content: center;
-  gap: 28px; margin-bottom: 24px; flex-wrap: wrap;
-}
-.footer-links a {
-  color: rgba(255,255,255,0.45); text-decoration: none;
-  font-size: 13px; font-weight: 500;
-  transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--gold); }
-.footer-divider {
-  width: 40px; height: 1px;
-  background: rgba(255,255,255,0.1);
-  margin: 0 auto 20px;
-}
-.footer-copy { font-size: 12px; opacity: 0.4; }
+/* ── FOOTER ── */
+footer { background: #080d18; color: rgba(255,255,255,0.4); text-align: center; padding: 48px 40px; }
+.f-logo { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 800; color: white; margin-bottom: 6px; }
+.f-logo span { background: linear-gradient(135deg, #818cf8, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.f-tag { font-size: 13px; margin-bottom: 24px; color: rgba(255,255,255,0.35); }
+.f-links { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; margin-bottom: 28px; }
+.f-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13.5px; font-weight: 500; transition: color 0.2s; }
+.f-links a:hover { color: #818cf8; }
+.f-div { width: 40px; height: 1px; background: rgba(255,255,255,0.08); margin: 0 auto 20px; }
+.f-copy { font-size: 12px; opacity: 0.35; }
 
-/* ───── RESPONSIVE ───── */
+/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  nav { padding: 0 24px; }
-  section { padding: 70px 24px; }
-  .hero { padding: 110px 24px 70px; }
-  .cta-section { padding: 70px 24px !important; }
+  nav { padding: 0 20px; }
+  section { padding: 70px 22px; }
+  .hero { padding: 110px 22px 72px; }
+  .cta-section { padding: 70px 22px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
-  .about-highlights { grid-template-columns: 1fr 1fr; }
-  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .nav-links li:not(:last-child) { display: none; }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
   .stat-item:last-child { border-bottom: none; }
-  .nav-links { gap: 18px; }
 }
 
-/* ───── ANIMATIONS ───── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .hero > * { animation: fadeUp 0.55s ease both; }
-.hero > *:nth-child(1) { animation-delay: 0.05s; }
-.hero > *:nth-child(2) { animation-delay: 0.15s; }
-.hero > *:nth-child(3) { animation-delay: 0.25s; }
-.hero > *:nth-child(4) { animation-delay: 0.32s; }
-.hero > *:nth-child(5) { animation-delay: 0.38s; }
-.hero > *:nth-child(6) { animation-delay: 0.44s; }
+.hero > *:nth-child(1){animation-delay:0.05s} .hero > *:nth-child(2){animation-delay:0.12s}
+.hero > *:nth-child(3){animation-delay:0.19s} .hero > *:nth-child(4){animation-delay:0.26s}
+.hero > *:nth-child(5){animation-delay:0.32s} .hero > *:nth-child(6){animation-delay:0.38s}
 </style>
 </head>
 <body>
@@ -439,40 +340,50 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
-  <img
-    id="heroPhoto"
-    src="photo.jpg"
-    alt="Anwar Hossain"
-    class="hero-avatar"
-    onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';"
-  >
-  <div id="avatarFallback" class="hero-avatar-placeholder" style="display:none;">👤</div>
+  <div class="avatar-ring">
+    <div class="avatar-inner">
+      <img src="photo.jpg" alt="Anwar Hossain"
+        onerror="this.parentNode.innerHTML='<div style=\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:60px;background:#eef2ff;\'>👤</div>'">
+    </div>
+  </div>
 
-  <div class="hero-badge">Available for Work</div>
-  <h1>Odoo Developer &amp;<br><em>Python Engineer</em></h1>
+  <div class="hero-badge"><span class="status-dot"></span> Available for Work</div>
+
+  <h1>Odoo Developer &<br><em>Python Engineer</em></h1>
+
   <p class="tagline">Building powerful ERP systems, scalable REST APIs, and intelligent automation tools that drive real business value.</p>
+
+  <div class="hero-chips">
+    <span class="chip c-indigo">⚙️ Odoo ERP</span>
+    <span class="chip c-sky">🐍 Django & DRF</span>
+    <span class="chip c-teal">🗄️ PostgreSQL</span>
+    <span class="chip c-amber">🕷️ Web Scraping</span>
+    <span class="chip c-fuchsia">🤖 AI Automation</span>
+    <span class="chip c-violet">🔗 REST API</span>
+  </div>
+
   <div class="hero-btns">
-    <a href="https://github.com/AnwarHossain909" target="_blank" class="btn btn-primary">GitHub Profile ↗</a>
+    <a href="https://github.com/AnwarHossain909" target="_blank" class="btn btn-grad">View GitHub ↗</a>
     <a href="#contact" class="btn btn-outline">Get In Touch</a>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about">
+<section id="about" class="about-bg">
   <div class="section-inner">
-    <p class="section-eyebrow">About Me</p>
+    <p class="eyebrow" style="color:var(--indigo)">About Me</p>
     <h2 class="section-title">Engineer. Builder. Problem Solver.</h2>
-    <div class="rule"></div>
+    <div class="rule" style="background:linear-gradient(90deg,var(--indigo),var(--violet))"></div>
     <div class="about-grid">
-      <div class="about-text-block">
-        <p>I'm an Odoo Developer and Python Engineer based in Dhaka, Bangladesh, currently working at BDCalling IT Ltd. I specialize in building custom ERP modules, scalable REST APIs with Django, and intelligent AI automation pipelines.</p>
+      <div class="about-text">
+        <p>I'm an Odoo Developer and Python Engineer based in Dhaka, Bangladesh, currently working at <strong>BDCalling IT Ltd</strong>. I specialize in building custom ERP modules, scalable REST APIs with Django, and intelligent AI automation pipelines.</p>
         <p>I'm quietly confident, naturally curious, and passionate about transforming real business challenges into clean, efficient software. With 52+ GitHub repositories, I'm always learning and building — one commit at a time.</p>
       </div>
-      <div class="about-highlights">
-        <div class="ah-item"><h4>1–2</h4><p>Years Experience</p></div>
-        <div class="ah-item"><h4>52+</h4><p>GitHub Repos</p></div>
-        <div class="ah-item"><h4>8+</h4><p>Odoo Modules</p></div>
-        <div class="ah-item"><h4>6</h4><p>Core Skills</p></div>
+      <div class="highlight-grid">
+        <div class="hl-card"><h4>1–2</h4><p>Years Experience</p></div>
+        <div class="hl-card"><h4>52+</h4><p>GitHub Repos</p></div>
+        <div class="hl-card"><h4>8+</h4><p>Odoo Modules</p></div>
+        <div class="hl-card"><h4>6</h4><p>Core Skills</p></div>
       </div>
     </div>
   </div>
@@ -481,84 +392,69 @@ footer {
 <!-- SKILLS -->
 <section id="skills">
   <div class="section-inner">
-    <p class="section-eyebrow">Expertise</p>
+    <p class="eyebrow" style="color:var(--violet)">Expertise</p>
     <h2 class="section-title">What I Bring to the Table</h2>
-    <div class="rule"></div>
+    <div class="rule" style="background:linear-gradient(90deg,var(--violet),var(--sky))"></div>
     <p class="section-sub">Specialized in backend development, ERP systems, API engineering, and intelligent automation — built for production, designed to scale.</p>
     <div class="skills-grid">
 
-      <div class="skill-card">
-        <div class="skill-icon-wrap">⚙️</div>
+      <div class="skill-card sk-indigo">
+        <div class="sk-icon ic-indigo">⚙️</div>
         <h3>Odoo Development</h3>
-        <p>Custom ERP modules built to match exact business requirements — from accounting to HR, with clean architecture and solid ORM.</p>
-        <span class="skill-label">Technologies</span>
-        <div class="skill-tags-list">
-          <span class="stag">Custom Modules</span><span class="stag">ORM</span>
-          <span class="stag">XML Views</span><span class="stag">QWeb Reports</span>
-          <span class="stag">Wizards</span><span class="stag">Access Rights</span>
-          <span class="stag">Workflows</span><span class="stag">Odoo 16/17</span>
+        <p>Custom ERP modules built to match exact business requirements — from accounting to HR, with clean architecture.</p>
+        <span class="slabel">Technologies</span>
+        <div class="stag-row">
+          <span class="stag st-indigo">Custom Modules</span><span class="stag st-indigo">ORM</span><span class="stag st-indigo">XML Views</span><span class="stag st-indigo">QWeb Reports</span><span class="stag st-indigo">Wizards</span><span class="stag st-indigo">Access Rights</span><span class="stag st-indigo">Workflows</span><span class="stag st-indigo">Odoo 16/17</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-icon-wrap">🐍</div>
-        <h3>Python &amp; API Development</h3>
-        <p>Robust backend systems and REST APIs built from scratch with Python and Django — clean, documented, and production-ready.</p>
-        <span class="skill-label">Technologies</span>
-        <div class="skill-tags-list">
-          <span class="stag">Python 3.x</span><span class="stag">Django</span>
-          <span class="stag">DRF</span><span class="stag">JWT Auth</span>
-          <span class="stag">Celery</span><span class="stag">REST API</span>
-          <span class="stag">JSON-RPC</span><span class="stag">Postman</span>
+      <div class="skill-card sk-sky">
+        <div class="sk-icon ic-sky">🐍</div>
+        <h3>Python & API Dev</h3>
+        <p>Robust backend systems and REST APIs built from scratch with Python and Django — clean, documented, production-ready.</p>
+        <span class="slabel">Technologies</span>
+        <div class="stag-row">
+          <span class="stag st-sky">Python 3.x</span><span class="stag st-sky">Django</span><span class="stag st-sky">DRF</span><span class="stag st-sky">JWT Auth</span><span class="stag st-sky">Celery</span><span class="stag st-sky">REST API</span><span class="stag st-sky">JSON-RPC</span><span class="stag st-sky">Postman</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-icon-wrap">🗄️</div>
+      <div class="skill-card sk-teal">
+        <div class="sk-icon ic-teal">🗄️</div>
         <h3>Database Engineering</h3>
         <p>Efficient schema design and complex query optimization for high-performance, data-intensive applications.</p>
-        <span class="skill-label">Technologies</span>
-        <div class="skill-tags-list">
-          <span class="stag">PostgreSQL</span><span class="stag">Complex Queries</span>
-          <span class="stag">Joins &amp; Indexes</span><span class="stag">Stored Procedures</span>
-          <span class="stag">pgAdmin</span><span class="stag">SQLite</span>
+        <span class="slabel">Technologies</span>
+        <div class="stag-row">
+          <span class="stag st-teal">PostgreSQL</span><span class="stag st-teal">Complex Queries</span><span class="stag st-teal">Joins & Indexes</span><span class="stag st-teal">Stored Procedures</span><span class="stag st-teal">pgAdmin</span><span class="stag st-teal">SQLite</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-icon-wrap">🕷️</div>
+      <div class="skill-card sk-amber">
+        <div class="sk-icon ic-amber">🕷️</div>
         <h3>Web Scraping</h3>
         <p>Automated data extraction pipelines using modern scraping frameworks with scheduled crawling and structured storage.</p>
-        <span class="skill-label">Technologies</span>
-        <div class="skill-tags-list">
-          <span class="stag">BeautifulSoup</span><span class="stag">Scrapy</span>
-          <span class="stag">Selenium</span><span class="stag">Playwright</span>
-          <span class="stag">XPath / CSS</span><span class="stag">Data Extraction</span>
+        <span class="slabel">Technologies</span>
+        <div class="stag-row">
+          <span class="stag st-amber">BeautifulSoup</span><span class="stag st-amber">Scrapy</span><span class="stag st-amber">Selenium</span><span class="stag st-amber">Playwright</span><span class="stag st-amber">Requests</span><span class="stag st-amber">XPath / CSS</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-icon-wrap">🤖</div>
+      <div class="skill-card sk-fuchsia">
+        <div class="sk-icon ic-fuchsia">🤖</div>
         <h3>AI Automation</h3>
         <p>Intelligent automation workflows powered by LLMs and LangChain — saving time and boosting productivity at scale.</p>
-        <span class="skill-label">Technologies</span>
-        <div class="skill-tags-list">
-          <span class="stag">OpenAI API</span><span class="stag">LangChain</span>
-          <span class="stag">Prompt Engineering</span><span class="stag">AI Workflows</span>
-          <span class="stag">Chatbot Dev</span>
+        <span class="slabel">Technologies</span>
+        <div class="stag-row">
+          <span class="stag st-fuchsia">OpenAI API</span><span class="stag st-fuchsia">LangChain</span><span class="stag st-fuchsia">Prompt Engineering</span><span class="stag st-fuchsia">AI Workflows</span><span class="stag st-fuchsia">Chatbot Dev</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-icon-wrap">📦</div>
+      <div class="skill-card sk-emerald">
+        <div class="sk-icon ic-emerald">📦</div>
         <h3>Odoo Ecosystem</h3>
-        <p>Deep hands-on experience across the full suite of Odoo enterprise modules, deployed for real clients.</p>
-        <span class="skill-label">Modules</span>
-        <div class="skill-tags-list">
-          <span class="stag">Sales</span><span class="stag">Purchase</span>
-          <span class="stag">Inventory</span><span class="stag">Accounting</span>
-          <span class="stag">HR &amp; Payroll</span><span class="stag">CRM</span>
-          <span class="stag">Project</span><span class="stag">POS</span>
+        <p>Deep hands-on experience across the full Odoo module suite, deployed for real enterprise clients.</p>
+        <span class="slabel">Modules</span>
+        <div class="stag-row">
+          <span class="stag st-emerald">Sales</span><span class="stag st-emerald">Purchase</span><span class="stag st-emerald">Inventory</span><span class="stag st-emerald">Accounting</span><span class="stag st-emerald">HR & Payroll</span><span class="stag st-emerald">CRM</span><span class="stag st-emerald">Project</span><span class="stag st-emerald">POS</span>
         </div>
       </div>
 
@@ -567,95 +463,83 @@ footer {
 </section>
 
 <!-- STATS -->
-<section class="stats-section">
+<section class="stats-bg">
   <div class="section-inner">
     <div class="stats-row">
-      <div class="stat-item"><h2>1–2</h2><p>Years of Experience</p></div>
-      <div class="stat-item"><h2>52+</h2><p>GitHub Repositories</p></div>
-      <div class="stat-item"><h2>8+</h2><p>Odoo Modules Mastered</p></div>
-      <div class="stat-item"><h2>6</h2><p>Core Tech Skills</p></div>
+      <div class="stat-item"><div class="stat-num sn1">1–2</div><p>Years of Experience</p></div>
+      <div class="stat-item"><div class="stat-num sn2">52+</div><p>GitHub Repositories</p></div>
+      <div class="stat-item"><div class="stat-num sn3">8+</div><p>Odoo Modules Mastered</p></div>
+      <div class="stat-item"><div class="stat-num sn4">6</div><p>Core Tech Skills</p></div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
+<section id="projects" class="projects-bg">
   <div class="section-inner">
-    <p class="section-eyebrow">Portfolio</p>
+    <p class="eyebrow" style="color:var(--sky)">Portfolio</p>
     <h2 class="section-title">Recent Work</h2>
-    <div class="rule"></div>
-    <p class="section-sub">A selection of projects I've built and delivered. <a href="https://github.com/AnwarHossain909" target="_blank" style="color:var(--gold-dk);font-weight:600;">View all on GitHub →</a></p>
+    <div class="rule" style="background:linear-gradient(90deg,var(--sky),var(--teal))"></div>
+    <p class="section-sub">A selection of projects I've built and delivered. <a href="https://github.com/AnwarHossain909" target="_blank" style="color:var(--indigo);font-weight:600;">View all on GitHub →</a></p>
     <div class="projects-grid">
 
-      <div class="project-card">
-        <div class="project-thumb" style="background:#f0eeff;"><span>⚙️</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#eef2ff,#e0e7ff);">⚙️</div>
+        <div class="proj-body">
           <h3>Custom Odoo ERP Module</h3>
-          <p>End-to-end custom module with inherited models, wizards, QWeb reports, and business logic automation for enterprise clients.</p>
-          <div class="project-stack-row">
-            <span class="ptag">Odoo</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span><span class="ptag">XML</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
+          <p>End-to-end custom module with inherited models, wizards, QWeb reports and business logic automation for enterprise clients.</p>
+          <div class="ptag-row"><span class="ptag">Odoo</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span><span class="ptag">XML</span></div>
+          <a class="proj-link pl-indigo" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
         </div>
       </div>
 
-      <div class="project-card">
-        <div class="project-thumb" style="background:#e8f9f4;"><span>🔗</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);">🔗</div>
+        <div class="proj-body">
           <h3>Django REST API System</h3>
-          <p>Full-featured REST API backend with JWT authentication, DRF serializers, viewsets, permissions, and Celery async tasks.</p>
-          <div class="project-stack-row">
-            <span class="ptag">Django</span><span class="ptag">DRF</span><span class="ptag">JWT</span><span class="ptag">PostgreSQL</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
+          <p>Full-featured REST API backend with JWT auth, DRF serializers, viewsets, permissions and Celery async tasks.</p>
+          <div class="ptag-row"><span class="ptag">Django</span><span class="ptag">DRF</span><span class="ptag">JWT</span><span class="ptag">PostgreSQL</span></div>
+          <a class="proj-link pl-sky" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
         </div>
       </div>
 
-      <div class="project-card">
-        <div class="project-thumb" style="background:#fff8e8;"><span>🕷️</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#fffbeb,#fef3c7);">🕷️</div>
+        <div class="proj-body">
           <h3>Web Scraping Pipeline</h3>
           <p>Automated data extraction pipeline using Scrapy and Selenium with PostgreSQL storage and scheduled crawling.</p>
-          <div class="project-stack-row">
-            <span class="ptag">Scrapy</span><span class="ptag">Selenium</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
+          <div class="ptag-row"><span class="ptag">Scrapy</span><span class="ptag">Selenium</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span></div>
+          <a class="proj-link pl-amber" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
         </div>
       </div>
 
-      <div class="project-card">
-        <div class="project-thumb" style="background:#fdf2fb;"><span>🤖</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#fdf4ff,#fae8ff);">🤖</div>
+        <div class="proj-body">
           <h3>AI Chatbot Automation</h3>
           <p>AI-powered automation tool using OpenAI API and LangChain for intelligent workflow processing and task automation.</p>
-          <div class="project-stack-row">
-            <span class="ptag">OpenAI</span><span class="ptag">LangChain</span><span class="ptag">Python</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
+          <div class="ptag-row"><span class="ptag">OpenAI</span><span class="ptag">LangChain</span><span class="ptag">Python</span></div>
+          <a class="proj-link pl-fuchsia" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
         </div>
       </div>
 
-      <div class="project-card">
-        <div class="project-thumb" style="background:#e8f0ff;"><span>📊</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
-          <h3>HR &amp; Payroll System</h3>
-          <p>Custom Odoo HR module with attendance tracking, leave management, and fully automated payroll calculation.</p>
-          <div class="project-stack-row">
-            <span class="ptag">Odoo HR</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);">📊</div>
+        <div class="proj-body">
+          <h3>HR & Payroll System</h3>
+          <p>Custom Odoo HR module with attendance tracking, leave management and fully automated payroll calculation.</p>
+          <div class="ptag-row"><span class="ptag">Odoo HR</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span></div>
+          <a class="proj-link pl-emerald" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
         </div>
       </div>
 
-      <div class="project-card">
-        <div class="project-thumb" style="background:#eafff5;"><span>🔄</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
+      <div class="proj-card">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#f0fdfa,#ccfbf1);">🔄</div>
+        <div class="proj-body">
           <h3>Odoo API Integration</h3>
-          <p>Third-party service integration with Odoo using JSON-RPC, webhook handling, and real-time data synchronization.</p>
-          <div class="project-stack-row">
-            <span class="ptag">Odoo</span><span class="ptag">REST API</span><span class="ptag">JSON-RPC</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
+          <p>Third-party service integration with Odoo using JSON-RPC, webhook handling and real-time data synchronization.</p>
+          <div class="ptag-row"><span class="ptag">Odoo</span><span class="ptag">REST API</span><span class="ptag">JSON-RPC</span></div>
+          <a class="proj-link pl-teal" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
         </div>
       </div>
 
@@ -666,65 +550,54 @@ footer {
 <!-- TESTIMONIALS -->
 <section>
   <div class="section-inner">
-    <p class="section-eyebrow">Testimonials</p>
+    <p class="eyebrow" style="color:var(--violet)">Testimonials</p>
     <h2 class="section-title">What Colleagues Say</h2>
-    <div class="rule"></div>
-    <div style="margin-bottom:48px;"></div>
-    <div class="testimonials-grid">
-
-      <div class="testimonial-card">
-        <div class="tquote">"</div>
-        <p class="testimonial-text">Anwar delivered exceptional Odoo customizations on time. His deep understanding of Python ORM and business workflows made the project a huge success.</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">FM</div>
-          <div>
-            <div class="author-name">Forid Mondol</div>
-            <div class="author-role">Project Manager, BDCalling IT Ltd</div>
-          </div>
+    <div class="rule" style="background:linear-gradient(90deg,var(--violet),var(--fuchsia))"></div>
+    <div style="margin-bottom:48px"></div>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="tq">"</div>
+        <p class="t-text">Anwar delivered exceptional Odoo customizations on time. His deep understanding of Python ORM and business workflows made the project a huge success.</p>
+        <div class="t-stars">★★★★★</div>
+        <div class="t-author">
+          <div class="t-av av1">FM</div>
+          <div><div class="t-name">Forid Mondol</div><div class="t-role">Project Manager, BDCalling IT Ltd</div></div>
         </div>
       </div>
-
-      <div class="testimonial-card">
-        <div class="tquote">"</div>
-        <p class="testimonial-text">His Django REST API work was clean, well-documented, and scalable. Anwar is a clear communicator who truly understands backend architecture.</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">SM</div>
-          <div>
-            <div class="author-name">Sayedul Morsalin</div>
-            <div class="author-role">Senior Developer, Tech Team</div>
-          </div>
+      <div class="t-card">
+        <div class="tq">"</div>
+        <p class="t-text">His Django REST API work was clean, well-documented and scalable. Anwar is a clear communicator who truly understands backend architecture.</p>
+        <div class="t-stars">★★★★★</div>
+        <div class="t-author">
+          <div class="t-av av2">SM</div>
+          <div><div class="t-name">Sayedul Morsalin</div><div class="t-role">Senior Developer, Tech Team</div></div>
         </div>
       </div>
-
-      <div class="testimonial-card">
-        <div class="tquote">"</div>
-        <p class="testimonial-text">The web scraping pipeline Anwar built for us saved countless hours of manual work. Reliable, efficient, and exactly what we needed.</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">NH</div>
-          <div>
-            <div class="author-name">Nadim Hossain</div>
-            <div class="author-role">Product Lead</div>
-          </div>
+      <div class="t-card">
+        <div class="tq">"</div>
+        <p class="t-text">The web scraping pipeline Anwar built for us saved countless hours of manual work. Reliable, efficient, and exactly what we needed.</p>
+        <div class="t-stars">★★★★★</div>
+        <div class="t-author">
+          <div class="t-av av3">NH</div>
+          <div><div class="t-name">Nadim Hossain</div><div class="t-role">Product Lead</div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section" id="contact">
-  <div class="section-inner" style="position:relative;z-index:1;">
-    <h2>Let's Build Something Great</h2>
-    <p>Open to new projects, Odoo consulting, and collaboration opportunities.</p>
-    <a href="mailto:your@email.com" class="btn-gold">Start a Conversation ✉</a>
-  </div>
+  <h2>Let's Build Something Great</h2>
+  <p>Open to new projects, Odoo consulting, and collaboration opportunities.</p>
+  <a href="mailto:your@email.com" class="btn-white">Start a Conversation ✉</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Anwar <span>Hossain</span></div>
-  <div class="footer-links">
+  <div class="f-logo">Anwar <span>Hossain</span></div>
+  <p class="f-tag">Odoo Developer · Python Engineer · AI Automation · Dhaka 🇧🇩</p>
+  <div class="f-links">
     <a href="https://github.com/AnwarHossain909" target="_blank">GitHub</a>
     <a href="mailto:your@email.com">Email</a>
     <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
@@ -732,8 +605,8 @@ footer {
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
   </div>
-  <div class="footer-divider"></div>
-  <p class="footer-copy">Crafted by Anwar Hossain · Dhaka, Bangladesh · 2025</p>
+  <div class="f-div"></div>
+  <p class="f-copy">Crafted by Anwar Hossain · Dhaka, Bangladesh · 2025</p>
 </footer>
 
 </body>
