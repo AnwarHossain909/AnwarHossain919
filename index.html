@@ -3,738 +3,609 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anwar Hossain | Odoo Developer & Python Backend Dev</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Anwar Hossain — Odoo Developer &amp; Python Backend Developer</title>
+<meta name="description" content="Portfolio of Anwar Hossain, Odoo ERP &amp; Python backend developer based in Dhaka, Bangladesh.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --bg:#0A0A0C;
+    --surface:#141416;
+    --surface-alt:#1C1C1F;
+    --border:#2A2A2E;
+    --border-soft:#212124;
+    --text:#EDEDED;
+    --muted:#9A9A9E;
+    --accent:#E8A33D;
+    --accent-dim:#B67F2C;
+    --accent-soft:rgba(232,163,61,0.12);
+    --teal:#5FA8A0;
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+    --sans:'IBM Plex Sans', system-ui, sans-serif;
+    --radius:10px;
+    --maxw:1180px;
+    color-scheme:dark;
+  }
+  html[data-theme="light"]{
+    --bg:#F6F6F4;
+    --surface:#FFFFFF;
+    --surface-alt:#F0F0ED;
+    --border:#E2E2DD;
+    --border-soft:#EBEBE6;
+    --text:#161616;
+    --muted:#68686C;
+    --accent-soft:rgba(232,163,61,0.14);
+    color-scheme:light;
+  }
+  html[data-accent="teal"]{ --accent:#4FB8A6; --accent-dim:#357E71; --accent-soft:rgba(79,184,166,0.14); }
+  html[data-accent="violet"]{ --accent:#9B87F5; --accent-dim:#6E5BC7; --accent-soft:rgba(155,135,245,0.14); }
+  html[data-accent="rose"]{ --accent:#E36E6E; --accent-dim:#B34A4A; --accent-soft:rgba(227,110,110,0.14); }
+  html[data-accent="lime"]{ --accent:#A8D64A; --accent-dim:#7CA332; --accent-soft:rgba(168,214,74,0.14); }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background .2s ease, color .2s ease;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
 
-:root {
-  --navy:    #0f172a;
-  --navy2:   #1e293b;
-  --slate:   #334155;
-  --muted:   #64748b;
-  --border:  #e2e8f0;
-  --light:   #f8fafc;
-  --white:   #ffffff;
-  --gold:    #c9a84c;
-  --gold-lt: #fdf6e7;
-  --gold-dk: #a8882e;
-  --radius:  14px;
-}
+  /* ---------- layout ---------- */
+  .shell{
+    max-width:var(--maxw);
+    margin:36px auto;
+    padding:0 24px;
+    display:grid;
+    grid-template-columns:296px 1fr;
+    gap:28px;
+    align-items:start;
+  }
+  @media (max-width:900px){
+    .shell{grid-template-columns:1fr;gap:20px;margin:16px auto;}
+  }
 
-html { scroll-behavior: smooth; }
+  /* ---------- sidebar ---------- */
+  .sidebar{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:28px 24px;
+    position:sticky;
+    top:20px;
+  }
+  @media (max-width:900px){ .sidebar{position:static;} }
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  color: var(--navy);
-  background: var(--white);
-  font-size: 16px;
-  line-height: 1.7;
-}
+  .avatar{
+    width:88px;height:88px;border-radius:50%;
+    background:linear-gradient(160deg, var(--surface-alt), var(--bg));
+    border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-weight:600;font-size:28px;color:var(--accent);
+    margin-bottom:16px;
+  }
+  .name{font-size:22px;font-weight:700;margin:0 0 2px;letter-spacing:-0.01em;}
+  .role{font-family:var(--mono);font-size:13px;color:var(--accent);margin:0 0 14px;}
+  .status{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:12.5px;color:var(--muted);
+    border:1px solid var(--border-soft);
+    background:var(--accent-soft);
+    padding:5px 10px;border-radius:999px;
+    margin-bottom:20px;
+  }
+  .status i{width:7px;height:7px;border-radius:50%;background:#5CD68A;display:inline-block;box-shadow:0 0 0 3px rgba(92,214,138,0.15);}
 
-/* ───── NAV ───── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  z-index: 100;
-  padding: 0 60px;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 68px;
-}
-.nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-weight: 800; font-size: 20px;
-  color: var(--navy); text-decoration: none;
-  letter-spacing: -0.3px;
-}
-.nav-logo span { color: var(--gold); }
-.nav-links { display: flex; gap: 36px; list-style: none; }
-.nav-links a {
-  color: var(--muted); text-decoration: none;
-  font-weight: 500; font-size: 14px;
-  letter-spacing: 0.02em;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--navy); }
-.nav-cta {
-  background: var(--navy) !important;
-  color: white !important;
-  padding: 9px 22px;
-  border-radius: 8px;
-  font-weight: 600 !important;
-  font-size: 13px !important;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  transition: background 0.2s !important;
-}
-.nav-cta:hover { background: var(--gold) !important; color: white !important; }
+  .meta-list{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .meta-list li{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--muted);}
+  .meta-list li svg{flex:none;margin-top:2px;color:var(--accent);}
+  .meta-list li a{color:var(--text);text-decoration:none;word-break:break-word;}
+  .meta-list li a:hover{color:var(--accent);}
 
-/* ───── HERO ───── */
-.hero {
-  padding: 130px 60px 90px;
-  display: flex; align-items: center; justify-content: center; flex-direction: column;
-  text-align: center;
-  background: var(--light);
-  position: relative; overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute; top: -60px; right: -80px;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero::after {
-  content: '';
-  position: absolute; bottom: -40px; left: -60px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(15,23,42,0.04) 0%, transparent 70%);
-  pointer-events: none;
-}
+  .social-row{display:flex;gap:8px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--border-soft);}
+  .social-row a{
+    width:34px;height:34px;border-radius:8px;
+    border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);text-decoration:none;
+    transition:border-color .15s, color .15s;
+  }
+  .social-row a:hover{border-color:var(--accent);color:var(--accent);}
 
-.hero-avatar {
-  width: 130px; height: 130px;
-  border-radius: 50%;
-  object-fit: cover; object-position: center top;
-  border: 4px solid var(--white);
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-  margin-bottom: 28px;
-  display: block;
-  box-shadow: 0 8px 32px rgba(15,23,42,0.14);
-}
-.hero-avatar-placeholder {
-  width: 130px; height: 130px;
-  border-radius: 50%;
-  background: var(--gold-lt);
-  border: 4px solid white;
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-  margin: 0 auto 28px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 52px;
-  box-shadow: 0 8px 32px rgba(15,23,42,0.14);
-}
+  .theme-box{
+    margin-top:16px;padding-top:16px;
+    border-top:1px solid var(--border-soft);
+  }
+  .theme-box .tb-label{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin:0 0 10px;}
+  .mode-toggle{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;
+    background:var(--surface-alt);border:1px solid var(--border);border-radius:8px;
+    padding:8px 10px;color:var(--text);font-family:var(--mono);font-size:12.5px;
+    cursor:pointer;margin-bottom:12px;
+  }
+  .mode-toggle:hover{border-color:var(--accent);}
+  .mode-toggle svg{color:var(--accent);}
+  .swatches{display:flex;gap:8px;}
+  .swatch{
+    width:22px;height:22px;border-radius:50%;cursor:pointer;
+    border:2px solid transparent;padding:0;
+  }
+  .swatch[data-swatch="amber"]{background:#E8A33D;}
+  .swatch[data-swatch="teal"]{background:#4FB8A6;}
+  .swatch[data-swatch="violet"]{background:#9B87F5;}
+  .swatch[data-swatch="rose"]{background:#E36E6E;}
+  .swatch[data-swatch="lime"]{background:#A8D64A;}
+  .swatch.active{border-color:var(--text);}
 
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--gold-lt);
-  border: 1px solid rgba(201,168,76,0.35);
-  color: var(--gold-dk);
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 6px 16px; border-radius: 50px;
-  margin-bottom: 20px;
-}
-.hero-badge::before { content: '●'; font-size: 8px; color: var(--gold); }
+  /* ---------- main / tabs ---------- */
+  .tabbar{
+    display:flex;gap:2px;
+    border-bottom:1px solid var(--border);
+    margin-bottom:26px;
+    overflow-x:auto;
+  }
+  .tabbar button{
+    font-family:var(--mono);
+    font-size:13px;
+    background:transparent;
+    color:var(--muted);
+    border:none;
+    border-bottom:2px solid transparent;
+    padding:12px 16px;
+    cursor:pointer;
+    white-space:nowrap;
+    display:flex;align-items:center;gap:8px;
+  }
+  .tabbar button .dot{width:6px;height:6px;border-radius:50%;background:var(--border);}
+  .tabbar button.active{color:var(--text);border-bottom-color:var(--accent);}
+  .tabbar button.active .dot{background:var(--accent);}
+  .tabbar button:hover{color:var(--text);}
 
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 5.5vw, 58px);
-  font-weight: 800; line-height: 1.15;
-  color: var(--navy); margin-bottom: 20px;
-  letter-spacing: -1px;
-}
-.hero h1 em { font-style: normal; color: var(--gold); }
+  .panel{display:none;animation:fadeIn .35s ease;}
+  .panel.active{display:block;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion:reduce){ .panel{animation:none;} }
 
-.hero p.tagline {
-  font-size: clamp(15px, 2vw, 18px);
-  color: var(--muted); max-width: 520px;
-  margin: 0 auto 36px; font-weight: 400; line-height: 1.8;
-}
+  .path{
+    font-family:var(--mono);font-size:12.5px;color:var(--teal);
+    margin:0 0 8px;
+  }
+  h2.head{font-size:24px;margin:0 0 18px;letter-spacing:-0.01em;}
+  h3.sub{font-size:15px;margin:26px 0 12px;color:var(--muted);font-weight:600;}
 
-.hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px;
+  }
 
-.btn {
-  padding: 13px 30px; border-radius: 8px;
-  font-size: 14px; font-weight: 600;
-  text-decoration: none; transition: all 0.2s;
-  font-family: 'DM Sans', sans-serif;
-  cursor: pointer; border: none;
-  display: inline-block; letter-spacing: 0.02em;
-}
-.btn-primary { background: var(--navy); color: white; }
-.btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
-.btn-outline { background: white; color: var(--navy); border: 1.5px solid var(--border); }
-.btn-outline:hover { border-color: var(--navy); transform: translateY(-2px); }
+  /* hero-ish intro inside about */
+  .intro p{margin:0 0 14px;color:var(--text);}
+  .intro p:last-child{margin-bottom:0;}
+  .cursor{display:inline-block;width:8px;height:1.05em;background:var(--accent);vertical-align:-2px;animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  @media (prefers-reduced-motion:reduce){ .cursor{animation:none;} }
 
-/* ───── SECTION COMMON ───── */
-section { padding: 90px 60px; }
-section:nth-child(even) { background: var(--light); }
-.section-inner { max-width: 1000px; margin: 0 auto; }
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0;}
+  @media (max-width:640px){ .stat-row{grid-template-columns:repeat(2,1fr);} }
+  .stat{border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;background:var(--surface);}
+  .stat b{display:block;font-family:var(--mono);font-size:22px;color:var(--accent);}
+  .stat span{font-size:12.5px;color:var(--muted);}
 
-.section-eyebrow {
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--gold); text-align: center;
-  margin-bottom: 10px;
-}
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(24px, 4vw, 40px);
-  font-weight: 800; text-align: center;
-  color: var(--navy); margin-bottom: 16px;
-  letter-spacing: -0.5px;
-}
-.section-sub {
-  text-align: center; color: var(--muted);
-  font-size: 16px; max-width: 580px;
-  margin: 0 auto 52px; line-height: 1.8;
-}
-.rule {
-  width: 48px; height: 3px;
-  background: var(--gold); border-radius: 2px;
-  margin: 0 auto 20px;
-}
+  .grid-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px;}
+  @media (max-width:640px){ .grid-cards{grid-template-columns:1fr;} }
+  .expertise-card{border:1px solid var(--border);border-radius:var(--radius);padding:18px;background:var(--surface);}
+  .expertise-card h4{margin:0 0 6px;font-size:15px;}
+  .expertise-card p{margin:0 0 12px;color:var(--muted);font-size:13.5px;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .tag{
+    font-family:var(--mono);font-size:11.5px;color:var(--teal);
+    border:1px solid var(--border-soft);background:rgba(95,168,160,0.08);
+    padding:3px 8px;border-radius:6px;
+  }
 
-/* ───── ABOUT ───── */
-.about-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-  align-items: center;
-}
-.about-text-block p {
-  font-size: 17px; color: var(--slate);
-  line-height: 1.85; margin-bottom: 18px;
-}
-.about-text-block p:last-child { margin-bottom: 0; }
-.about-highlights {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-}
-.ah-item {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px 22px;
-  border-left: 3px solid var(--gold);
-}
-.ah-item h4 { font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 4px; }
-.ah-item p { font-size: 13px; color: var(--muted); margin: 0; }
+  /* timeline */
+  .timeline{list-style:none;margin:0;padding:0;border-left:1px solid var(--border);}
+  .timeline li{position:relative;padding:2px 0 26px 24px;}
+  .timeline li:last-child{padding-bottom:0;}
+  .timeline li::before{
+    content:"";position:absolute;left:-5px;top:5px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);
+  }
+  .tl-when{font-family:var(--mono);font-size:12px;color:var(--accent);}
+  .tl-title{font-size:15.5px;font-weight:600;margin:3px 0 2px;}
+  .tl-org{font-size:13px;color:var(--muted);margin:0 0 8px;}
+  .tl-org b{color:var(--text);font-weight:500;}
+  .tl-body{list-style:none;margin:0;padding:0;color:var(--text);font-size:13.8px;display:flex;flex-direction:column;gap:6px;}
+  .tl-body li{padding-left:14px;position:relative;color:#C7CCDA;}
+  .tl-body li::before{content:"—";position:absolute;left:0;color:var(--muted);}
 
-/* ───── SKILLS ───── */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-.skill-card {
-  background: var(--white); border-radius: var(--radius);
-  padding: 30px 26px;
-  border: 1px solid var(--border);
-  transition: all 0.25s;
-  position: relative; overflow: hidden;
-}
-.skill-card::after {
-  content: '';
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 3px;
-  background: var(--gold); transform: scaleX(0);
-  transform-origin: left; transition: transform 0.25s;
-}
-.skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(15,23,42,0.08); border-color: transparent; }
-.skill-card:hover::after { transform: scaleX(1); }
+  .skills{display:flex;flex-direction:column;gap:14px;}
+  .skill-row b{font-size:13.5px;font-weight:500;}
+  .skill-track{height:6px;border-radius:4px;background:var(--surface-alt);border:1px solid var(--border-soft);margin-top:8px;overflow:hidden;}
+  .skill-fill{height:100%;background:linear-gradient(90deg, var(--accent-dim), var(--accent));border-radius:4px;}
+  .skill-pct{float:right;font-family:var(--mono);font-size:12px;color:var(--muted);}
 
-.skill-icon-wrap {
-  width: 48px; height: 48px;
-  background: var(--gold-lt); border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; margin-bottom: 18px;
-}
-.skill-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
-.skill-card > p { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; line-height: 1.6; }
-.skill-label {
-  font-size: 11px; font-weight: 600;
-  color: var(--gold-dk); text-transform: uppercase;
-  letter-spacing: 0.1em; margin-bottom: 10px; display: block;
-}
-.skill-tags-list { display: flex; flex-wrap: wrap; gap: 6px; }
-.stag {
-  background: var(--light); color: var(--slate);
-  font-size: 12px; font-weight: 500;
-  padding: 4px 11px; border-radius: 5px;
-  border: 1px solid var(--border);
-}
+  .cert-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .cert-list li{font-size:13.8px;color:var(--text);padding-left:16px;position:relative;}
+  .cert-list li::before{content:"▸";position:absolute;left:0;color:var(--accent);}
+  .cert-list li span{color:var(--muted);font-family:var(--mono);font-size:12px;}
 
-/* ───── STATS ───── */
-.stats-section { background: var(--navy) !important; }
-.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0; }
-.stat-item {
-  text-align: center; padding: 50px 20px;
-  border-right: 1px solid rgba(255,255,255,0.08);
-}
-.stat-item:last-child { border-right: none; }
-.stat-item h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 46px; font-weight: 800;
-  color: var(--gold); line-height: 1; margin-bottom: 8px;
-}
-.stat-item p { color: rgba(255,255,255,0.55); font-size: 14px; font-weight: 500; letter-spacing: 0.02em; }
+  /* projects */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  @media (max-width:640px){ .proj-grid{grid-template-columns:1fr;} }
+  .proj-card{border:1px solid var(--border);border-radius:var(--radius);padding:20px;background:var(--surface);display:flex;flex-direction:column;gap:10px;}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .proj-top h4{margin:0;font-size:16px;}
+  .badge{font-family:var(--mono);font-size:11px;color:#5CD68A;border:1px solid rgba(92,214,138,0.3);background:rgba(92,214,138,0.08);padding:3px 8px;border-radius:6px;white-space:nowrap;}
+  .proj-card p{margin:0;color:var(--muted);font-size:13.6px;}
+  .proj-card .tags{margin-top:4px;}
 
-/* ───── PROJECTS ───── */
-.projects-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 22px;
-}
-.project-card {
-  background: var(--white); border-radius: var(--radius);
-  overflow: hidden; border: 1px solid var(--border);
-  transition: all 0.25s;
-}
-.project-card:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(15,23,42,0.10); border-color: transparent; }
-.project-thumb {
-  width: 100%; height: 148px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 44px; position: relative; overflow: hidden;
-}
-.project-thumb-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 100%);
-}
-.project-body { padding: 22px 24px 26px; }
-.project-body h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
-.project-body p { color: var(--muted); font-size: 13.5px; margin-bottom: 18px; line-height: 1.6; }
-.project-stack-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
-.ptag {
-  background: var(--light); color: var(--slate);
-  font-size: 11.5px; font-weight: 500;
-  padding: 3px 10px; border-radius: 5px;
-  border: 1px solid var(--border);
-}
-.project-link {
-  color: var(--gold-dk); font-weight: 600; font-size: 13.5px;
-  text-decoration: none; display: inline-flex;
-  align-items: center; gap: 5px;
-  transition: gap 0.2s;
-}
-.project-link:hover { gap: 9px; }
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:20px;}
+  @media (max-width:720px){ .contact-grid{grid-template-columns:1fr;} }
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+  .field label{font-family:var(--mono);font-size:12px;color:var(--muted);}
+  .field input, .field textarea{
+    background:var(--surface-alt);border:1px solid var(--border);border-radius:8px;
+    padding:10px 12px;color:var(--text);font-family:var(--sans);font-size:14px;
+    resize:vertical;
+  }
+  .field input:focus, .field textarea:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .btn{
+    font-family:var(--mono);font-size:13px;
+    background:var(--accent);color:#1B140A;border:none;
+    padding:11px 18px;border-radius:8px;cursor:pointer;font-weight:600;
+  }
+  .btn:hover{background:#f0b158;}
 
-/* ───── TESTIMONIALS ───── */
-.testimonials-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-.testimonial-card {
-  background: var(--white); border-radius: var(--radius);
-  padding: 30px 28px; border: 1px solid var(--border);
-  position: relative;
-}
-.tquote {
-  font-family: 'Playfair Display', serif;
-  font-size: 56px; line-height: 1;
-  color: var(--gold); opacity: 0.3;
-  position: absolute; top: 14px; left: 22px;
-  user-select: none;
-}
-.testimonial-text {
-  color: var(--slate); font-size: 15px; line-height: 1.75;
-  margin-bottom: 22px; padding-top: 28px;
-}
-.testimonial-author { display: flex; align-items: center; gap: 14px; }
-.author-avatar {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: var(--navy2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 700; color: var(--gold);
-  flex-shrink: 0; letter-spacing: 0.04em;
-}
-.author-name { font-weight: 700; font-size: 14px; color: var(--navy); }
-.author-role { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
-
-/* ───── CTA ───── */
-.cta-section {
-  background: var(--navy) !important;
-  text-align: center; padding: 90px 60px !important;
-  position: relative; overflow: hidden;
-}
-.cta-section::before {
-  content: '';
-  position: absolute; top: -80px; right: -80px;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
-  pointer-events: none;
-}
-.cta-section h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(26px, 4vw, 42px); font-weight: 800;
-  color: white; margin-bottom: 14px; letter-spacing: -0.5px;
-}
-.cta-section p { font-size: 17px; color: rgba(255,255,255,0.55); margin-bottom: 36px; }
-.btn-gold {
-  background: var(--gold); color: white;
-  padding: 15px 38px; border-radius: 8px;
-  font-size: 15px; font-weight: 700; text-decoration: none;
-  display: inline-block; transition: all 0.2s; letter-spacing: 0.02em;
-}
-.btn-gold:hover { background: var(--gold-dk); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201,168,76,0.35); }
-
-/* ───── FOOTER ───── */
-footer {
-  background: #080d18;
-  color: rgba(255,255,255,0.45);
-  text-align: center; padding: 44px 40px;
-}
-.footer-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px; font-weight: 800;
-  color: white; margin-bottom: 18px;
-}
-.footer-logo span { color: var(--gold); }
-.footer-links {
-  display: flex; justify-content: center;
-  gap: 28px; margin-bottom: 24px; flex-wrap: wrap;
-}
-.footer-links a {
-  color: rgba(255,255,255,0.45); text-decoration: none;
-  font-size: 13px; font-weight: 500;
-  transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--gold); }
-.footer-divider {
-  width: 40px; height: 1px;
-  background: rgba(255,255,255,0.1);
-  margin: 0 auto 20px;
-}
-.footer-copy { font-size: 12px; opacity: 0.4; }
-
-/* ───── RESPONSIVE ───── */
-@media (max-width: 768px) {
-  nav { padding: 0 24px; }
-  section { padding: 70px 24px; }
-  .hero { padding: 110px 24px 70px; }
-  .cta-section { padding: 70px 24px !important; }
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
-  .about-highlights { grid-template-columns: 1fr 1fr; }
-  .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
-  .stat-item:last-child { border-bottom: none; }
-  .nav-links { gap: 18px; }
-}
-
-/* ───── ANIMATIONS ───── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.hero > * { animation: fadeUp 0.55s ease both; }
-.hero > *:nth-child(1) { animation-delay: 0.05s; }
-.hero > *:nth-child(2) { animation-delay: 0.15s; }
-.hero > *:nth-child(3) { animation-delay: 0.25s; }
-.hero > *:nth-child(4) { animation-delay: 0.32s; }
-.hero > *:nth-child(5) { animation-delay: 0.38s; }
-.hero > *:nth-child(6) { animation-delay: 0.44s; }
+  footer{max-width:var(--maxw);margin:10px auto 40px;padding:20px 24px 0;border-top:1px solid var(--border-soft);color:var(--muted);font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  footer a{color:var(--muted);text-decoration:none;}
+  footer a:hover{color:var(--accent);}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">Anwar <span>Hossain</span></a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
-  </ul>
-</nav>
+<div class="shell">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="avatar">AH</div>
+    <p class="name">Anwar Hossain</p>
+    <p class="role">Odoo Developer · Python Backend Dev</p>
+    <span class="status"><i></i> Available for work</span>
 
-<!-- HERO -->
-<section class="hero">
-  <img
-    id="heroPhoto"
-    src="photo.jpg"
-    alt="Anwar Hossain"
-    class="hero-avatar"
-    onerror="this.style.display='none'; document.getElementById('avatarFallback').style.display='flex';"
-  >
-  <div id="avatarFallback" class="hero-avatar-placeholder" style="display:none;">👤</div>
+    <ul class="meta-list">
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+        <a href="mailto:anwarjafrin@gmail.com">anwarjafrin@gmail.com</a>
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.65 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.22a2 2 0 0 1 2.11-.45c.84.31 1.72.53 2.62.65A2 2 0 0 1 22 16.92z"/></svg>
+        <a href="tel:+8801743672990">+880 1743 672990</a>
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Dhaka, Bangladesh</span>
+      </li>
+      <li>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span>Open to full-time &amp; contract roles</span>
+      </li>
+    </ul>
 
-  <div class="hero-badge">Available for Work</div>
-  <h1>Odoo Developer &amp;<br><em>Python Engineer</em></h1>
-  <p class="tagline">Building powerful ERP systems, scalable REST APIs, and intelligent automation tools that drive real business value.</p>
-  <div class="hero-btns">
-    <a href="https://github.com/AnwarHossain909" target="_blank" class="btn btn-primary">GitHub Profile ↗</a>
-    <a href="#contact" class="btn btn-outline">Get In Touch</a>
-  </div>
-</section>
+    <div class="social-row">
+      <a href="https://github.com/AnwarHossain909" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5v-1.83c-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.32.1-2.75 0 0 .84-.28 2.75 1.05a9.24 9.24 0 0 1 5 0c1.9-1.33 2.75-1.05 2.75-1.05.55 1.43.2 2.49.1 2.75.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.82c0 .28.18.61.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0zM3.4 8.75h3.4V21H3.4zM9.8 8.75h3.26v1.68h.05c.45-.86 1.56-1.77 3.22-1.77 3.44 0 4.08 2.27 4.08 5.22V21h-3.4v-5.55c0-1.32-.02-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93V21H9.8z"/></svg>
+      </a>
+    </div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-inner">
-    <p class="section-eyebrow">About Me</p>
-    <h2 class="section-title">Engineer. Builder. Problem Solver.</h2>
-    <div class="rule"></div>
-    <div class="about-grid">
-      <div class="about-text-block">
-        <p>I'm an Odoo Developer and Python Engineer based in Dhaka, Bangladesh, currently working at BDCalling IT Ltd. I specialize in building custom ERP modules, scalable REST APIs with Django, and intelligent AI automation pipelines.</p>
-        <p>I'm quietly confident, naturally curious, and passionate about transforming real business challenges into clean, efficient software. With 52+ GitHub repositories, I'm always learning and building — one commit at a time.</p>
-      </div>
-      <div class="about-highlights">
-        <div class="ah-item"><h4>1–2</h4><p>Years Experience</p></div>
-        <div class="ah-item"><h4>52+</h4><p>GitHub Repos</p></div>
-        <div class="ah-item"><h4>8+</h4><p>Odoo Modules</p></div>
-        <div class="ah-item"><h4>6</h4><p>Core Skills</p></div>
+    <div class="theme-box">
+      <p class="tb-label">theme</p>
+      <button class="mode-toggle" id="modeToggle" type="button" aria-label="Toggle light/dark mode">
+        <span id="modeLabel">Dark mode</span>
+        <svg id="modeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <div class="swatches" id="swatches" role="group" aria-label="Accent color">
+        <button class="swatch active" data-swatch="amber" title="Amber" aria-label="Amber accent"></button>
+        <button class="swatch" data-swatch="teal" title="Teal" aria-label="Teal accent"></button>
+        <button class="swatch" data-swatch="violet" title="Violet" aria-label="Violet accent"></button>
+        <button class="swatch" data-swatch="rose" title="Rose" aria-label="Rose accent"></button>
+        <button class="swatch" data-swatch="lime" title="Lime" aria-label="Lime accent"></button>
       </div>
     </div>
-  </div>
-</section>
+  </aside>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-inner">
-    <p class="section-eyebrow">Expertise</p>
-    <h2 class="section-title">What I Bring to the Table</h2>
-    <div class="rule"></div>
-    <p class="section-sub">Specialized in backend development, ERP systems, API engineering, and intelligent automation — built for production, designed to scale.</p>
-    <div class="skills-grid">
+  <!-- ============ MAIN ============ -->
+  <main>
+    <nav class="tabbar" role="tablist" aria-label="Portfolio sections">
+      <button class="active" data-tab="about"><span class="dot"></span>about.md</button>
+      <button data-tab="resume"><span class="dot"></span>resume.md</button>
+      <button data-tab="projects"><span class="dot"></span>projects.md</button>
+      <button data-tab="contact"><span class="dot"></span>contact.md</button>
+    </nav>
 
-      <div class="skill-card">
-        <div class="skill-icon-wrap">⚙️</div>
-        <h3>Odoo Development</h3>
-        <p>Custom ERP modules built to match exact business requirements — from accounting to HR, with clean architecture and solid ORM.</p>
-        <span class="skill-label">Technologies</span>
-        <div class="skill-tags-list">
-          <span class="stag">Custom Modules</span><span class="stag">ORM</span>
-          <span class="stag">XML Views</span><span class="stag">QWeb Reports</span>
-          <span class="stag">Wizards</span><span class="stag">Access Rights</span>
-          <span class="stag">Workflows</span><span class="stag">Odoo 16/17</span>
+    <!-- ---------- ABOUT ---------- -->
+    <section class="panel active" id="about">
+      <p class="path">~/about</p>
+      <h2 class="head">Odoo ERP &amp; Python backend developer, based in Dhaka</h2>
+
+      <div class="card intro">
+        <p>I build custom Odoo modules and Python backends for businesses that need their operations — sales, inventory, HR, accounting — to run on software that actually fits how they work, not the other way around.</p>
+        <p>Currently a Senior Executive, Python &amp; Odoo Developer at Zencore Solutions Ltd., where I design HRM, Inventory, Sales, Purchase and Accounting modules on Odoo 17–19, build authenticated REST endpoints, and automate workflows that used to take hours of manual entry each week.</p>
+        <p>Before Odoo, I worked as a Django developer, so I'm comfortable moving between ERP customization and general-purpose backend and API work<span class="cursor" aria-hidden="true"></span></p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat"><b>1 yr</b><span>at current role</span></div>
+        <div class="stat"><b>3</b><span>ERP modules shipped</span></div>
+        <div class="stat"><b>17–19</b><span>Odoo versions used</span></div>
+        <div class="stat"><b>500+</b><span>problems solved on judges</span></div>
+      </div>
+
+      <h3 class="sub">What I do</h3>
+      <div class="grid-cards">
+        <div class="expertise-card">
+          <h4>Odoo development</h4>
+          <p>Custom modules, inherited models, wizards and QWeb reports built around real business rules.</p>
+          <div class="tags"><span class="tag">Odoo ORM</span><span class="tag">XML views</span><span class="tag">Record rules</span><span class="tag">Scheduled actions</span></div>
+        </div>
+        <div class="expertise-card">
+          <h4>Python &amp; APIs</h4>
+          <p>REST endpoints and backend services with Django and Odoo HTTP controllers, including token-based auth.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Django</span><span class="tag">JWT</span><span class="tag">REST APIs</span></div>
+        </div>
+        <div class="expertise-card">
+          <h4>Database &amp; data</h4>
+          <p>Schema design, migrations and validation logic on PostgreSQL for multi-company deployments.</p>
+          <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Data migration</span><span class="tag">MySQL</span><span class="tag">SQLite</span></div>
+        </div>
+        <div class="expertise-card">
+          <h4>Workflow automation</h4>
+          <p>Server actions and scripted jobs that remove repetitive manual work from day-to-day operations.</p>
+          <div class="tags"><span class="tag">Server actions</span><span class="tag">Access rights</span><span class="tag">Wizards</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- RESUME ---------- -->
+    <section class="panel" id="resume">
+      <p class="path">~/resume</p>
+      <h2 class="head">Experience &amp; education</h2>
+
+      <div class="card">
+        <h3 class="sub" style="margin-top:0;">Experience</h3>
+        <ul class="timeline">
+          <li>
+            <p class="tl-when">Jan 2026 — Present</p>
+            <p class="tl-title">Senior Executive — Python &amp; Odoo Developer</p>
+            <p class="tl-org"><b>Zencore Solutions Ltd.</b> · Dhaka, Bangladesh</p>
+            <ul class="tl-body">
+              <li>Designed and deployed custom Odoo 17–19 modules for HRM, Inventory, Sales, Purchase and Accounting.</li>
+              <li>Built RESTful endpoints via Odoo HTTP controllers with session- and JWT-based auth, cutting external integration time by 40%.</li>
+              <li>Automated workflows with scheduled and server actions, removing 15+ hours of manual entry per week.</li>
+              <li>Implemented role-based access control across multi-company environments using record rules.</li>
+            </ul>
+          </li>
+          <li>
+            <p class="tl-when">Sep 2025 — Jan 2026</p>
+            <p class="tl-title">Executive — Python &amp; Odoo Developer</p>
+            <p class="tl-org"><b>Zencore Solutions Ltd.</b> · Dhaka, Bangladesh</p>
+            <ul class="tl-body">
+              <li>Built Python backend solutions for automation, data processing and system integrations.</li>
+              <li>Wrote reusable scripts for data migration, validation and API integration.</li>
+              <li>Worked across PostgreSQL, REST APIs and JSON to connect internal and third-party systems.</li>
+            </ul>
+          </li>
+          <li>
+            <p class="tl-when">Dec 2024 — Aug 2025</p>
+            <p class="tl-title">Django Developer</p>
+            <p class="tl-org"><b>AppExit</b> · Dhaka, Bangladesh</p>
+            <ul class="tl-body">
+              <li>Documented systems with use case, ER, DFD and class diagrams for planning.</li>
+              <li>Supported technical presentations and team planning across development stages.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h3 class="sub" style="margin-top:0;">Education</h3>
+        <ul class="timeline">
+          <li>
+            <p class="tl-when">2024 — Present</p>
+            <p class="tl-title">B.Sc. in Computer Science &amp; Engineering</p>
+            <p class="tl-org">Dhaka International University · Dhaka, Bangladesh</p>
+          </li>
+          <li>
+            <p class="tl-when">Aug 2019 — Aug 2023</p>
+            <p class="tl-title">Diploma in Computer Science &amp; Engineering</p>
+            <p class="tl-org">Brahmanbaria Polytechnic Institute</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <h3 class="sub" style="margin-top:0;">Skills</h3>
+        <div class="skills">
+          <div class="skill-row"><b>Odoo / ERP</b><span class="skill-pct">90%</span><div class="skill-track"><div class="skill-fill" style="width:90%"></div></div></div>
+          <div class="skill-row"><b>Python</b><span class="skill-pct">88%</span><div class="skill-track"><div class="skill-fill" style="width:88%"></div></div></div>
+          <div class="skill-row"><b>REST APIs</b><span class="skill-pct">85%</span><div class="skill-track"><div class="skill-fill" style="width:85%"></div></div></div>
+          <div class="skill-row"><b>PostgreSQL</b><span class="skill-pct">82%</span><div class="skill-track"><div class="skill-fill" style="width:82%"></div></div></div>
+          <div class="skill-row"><b>Django</b><span class="skill-pct">78%</span><div class="skill-track"><div class="skill-fill" style="width:78%"></div></div></div>
+          <div class="skill-row"><b>JavaScript / HTML / CSS</b><span class="skill-pct">55%</span><div class="skill-track"><div class="skill-fill" style="width:55%"></div></div></div>
         </div>
       </div>
 
-      <div class="skill-card">
-        <div class="skill-icon-wrap">🐍</div>
-        <h3>Python &amp; API Development</h3>
-        <p>Robust backend systems and REST APIs built from scratch with Python and Django — clean, documented, and production-ready.</p>
-        <span class="skill-label">Technologies</span>
-        <div class="skill-tags-list">
-          <span class="stag">Python 3.x</span><span class="stag">Django</span>
-          <span class="stag">DRF</span><span class="stag">JWT Auth</span>
-          <span class="stag">Celery</span><span class="stag">REST API</span>
-          <span class="stag">JSON-RPC</span><span class="stag">Postman</span>
+      <div class="card" style="margin-top:16px;">
+        <h3 class="sub" style="margin-top:0;">Leadership &amp; achievements</h3>
+        <ul class="cert-list">
+          <li>Moderator, BBPI Programming Club <span>2022 – 2024</span> — organized programming contests and gaming events for the CS student community.</li>
+          <li>Solved 500+ algorithmic problems across online judges, reaching a max rating of 1200+ <span>Codeforces / CodeChef</span></li>
+          <li>5th place, BBPI programming contest</li>
+          <li>Certifications: Skill Competition 2022 · Programming Contest Participant</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ---------- PROJECTS ---------- -->
+    <section class="panel" id="projects">
+      <p class="path">~/projects</p>
+      <h2 class="head">Selected work</h2>
+
+      <div class="proj-grid">
+        <div class="proj-card">
+          <div class="proj-top"><h4>Asset Management System</h4><span class="badge">Completed</span></div>
+          <p>Custom Odoo module managing the full asset lifecycle from procurement to disposal, with employee-wise allocation and return workflows.</p>
+          <p>Automated straight-line depreciation with accounting journal integration and validation logic.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Odoo ORM</span><span class="tag">XML</span><span class="tag">PostgreSQL</span><span class="tag">QWeb</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-top"><h4>Micro Finance Management System</h4><span class="badge">Completed</span></div>
+          <p>Odoo module for client onboarding, loan applications and micro-loan disbursement with configurable interest, tenure and repayment frequency.</p>
+          <p>Automated EMI generation, repayment tracking and overdue status updates, with guarantor and credit-limit validation.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Odoo ORM</span><span class="tag">XML</span><span class="tag">PostgreSQL</span><span class="tag">QWeb</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-top"><h4>Export LC Management System</h4><span class="badge">Completed</span></div>
+          <p>Odoo module for managing export Letter of Credit processes: LC information, document tracking, shipment details and status workflows.</p>
+          <p>Custom models and business logic with automated validations to streamline export operations.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Odoo ORM</span><span class="tag">XML</span><span class="tag">PostgreSQL</span><span class="tag">QWeb</span></div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-top"><h4>Multi-company access control</h4><span class="badge">In production</span></div>
+          <p>Role-based access rules built on <code>ir.model.access</code> and record rules to secure data across multi-company Odoo deployments for enterprise clients.</p>
+          <div class="tags"><span class="tag">Odoo</span><span class="tag">Security</span><span class="tag">Record rules</span></div>
         </div>
       </div>
+    </section>
 
-      <div class="skill-card">
-        <div class="skill-icon-wrap">🗄️</div>
-        <h3>Database Engineering</h3>
-        <p>Efficient schema design and complex query optimization for high-performance, data-intensive applications.</p>
-        <span class="skill-label">Technologies</span>
-        <div class="skill-tags-list">
-          <span class="stag">PostgreSQL</span><span class="stag">Complex Queries</span>
-          <span class="stag">Joins &amp; Indexes</span><span class="stag">Stored Procedures</span>
-          <span class="stag">pgAdmin</span><span class="stag">SQLite</span>
+    <!-- ---------- CONTACT ---------- -->
+    <section class="panel" id="contact">
+      <p class="path">~/contact</p>
+      <h2 class="head">Let's work together</h2>
+
+      <div class="contact-grid">
+        <div class="card">
+          <h3 class="sub" style="margin-top:0;">Reach me directly</h3>
+          <ul class="meta-list">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+              <a href="mailto:anwarjafrin@gmail.com">anwarjafrin@gmail.com</a>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.78.65 2.62a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.46-1.22a2 2 0 0 1 2.11-.45c.84.31 1.72.53 2.62.65A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+8801743672990">+880 1743 672990</a>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Dhaka, Bangladesh</span>
+            </li>
+          </ul>
+          <p style="color:var(--muted);font-size:13.5px;margin-top:16px;">Open to full-time roles, contract work, and Odoo consulting engagements.</p>
+        </div>
+
+        <div class="card">
+          <h3 class="sub" style="margin-top:0;">Send a message</h3>
+          <form id="contactForm">
+            <div class="field">
+              <label for="cname">Name</label>
+              <input id="cname" type="text" placeholder="Your name" required>
+            </div>
+            <div class="field">
+              <label for="cemail">Email</label>
+              <input id="cemail" type="email" placeholder="you@example.com" required>
+            </div>
+            <div class="field">
+              <label for="cmsg">Message</label>
+              <textarea id="cmsg" rows="4" placeholder="Tell me about the project..." required></textarea>
+            </div>
+            <button class="btn" type="submit">Send message</button>
+          </form>
         </div>
       </div>
+    </section>
+  </main>
+</div>
 
-      <div class="skill-card">
-        <div class="skill-icon-wrap">🕷️</div>
-        <h3>Web Scraping</h3>
-        <p>Automated data extraction pipelines using modern scraping frameworks with scheduled crawling and structured storage.</p>
-        <span class="skill-label">Technologies</span>
-        <div class="skill-tags-list">
-          <span class="stag">BeautifulSoup</span><span class="stag">Scrapy</span>
-          <span class="stag">Selenium</span><span class="stag">Playwright</span>
-          <span class="stag">XPath / CSS</span><span class="stag">Data Extraction</span>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-icon-wrap">🤖</div>
-        <h3>AI Automation</h3>
-        <p>Intelligent automation workflows powered by LLMs and LangChain — saving time and boosting productivity at scale.</p>
-        <span class="skill-label">Technologies</span>
-        <div class="skill-tags-list">
-          <span class="stag">OpenAI API</span><span class="stag">LangChain</span>
-          <span class="stag">Prompt Engineering</span><span class="stag">AI Workflows</span>
-          <span class="stag">Chatbot Dev</span>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-icon-wrap">📦</div>
-        <h3>Odoo Ecosystem</h3>
-        <p>Deep hands-on experience across the full suite of Odoo enterprise modules, deployed for real clients.</p>
-        <span class="skill-label">Modules</span>
-        <div class="skill-tags-list">
-          <span class="stag">Sales</span><span class="stag">Purchase</span>
-          <span class="stag">Inventory</span><span class="stag">Accounting</span>
-          <span class="stag">HR &amp; Payroll</span><span class="stag">CRM</span>
-          <span class="stag">Project</span><span class="stag">POS</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="stats-section">
-  <div class="section-inner">
-    <div class="stats-row">
-      <div class="stat-item"><h2>1–2</h2><p>Years of Experience</p></div>
-      <div class="stat-item"><h2>52+</h2><p>GitHub Repositories</p></div>
-      <div class="stat-item"><h2>8+</h2><p>Odoo Modules Mastered</p></div>
-      <div class="stat-item"><h2>6</h2><p>Core Tech Skills</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-inner">
-    <p class="section-eyebrow">Portfolio</p>
-    <h2 class="section-title">Recent Work</h2>
-    <div class="rule"></div>
-    <p class="section-sub">A selection of projects I've built and delivered. <a href="https://github.com/AnwarHossain909" target="_blank" style="color:var(--gold-dk);font-weight:600;">View all on GitHub →</a></p>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-thumb" style="background:#f0eeff;"><span>⚙️</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
-          <h3>Custom Odoo ERP Module</h3>
-          <p>End-to-end custom module with inherited models, wizards, QWeb reports, and business logic automation for enterprise clients.</p>
-          <div class="project-stack-row">
-            <span class="ptag">Odoo</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span><span class="ptag">XML</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background:#e8f9f4;"><span>🔗</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
-          <h3>Django REST API System</h3>
-          <p>Full-featured REST API backend with JWT authentication, DRF serializers, viewsets, permissions, and Celery async tasks.</p>
-          <div class="project-stack-row">
-            <span class="ptag">Django</span><span class="ptag">DRF</span><span class="ptag">JWT</span><span class="ptag">PostgreSQL</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background:#fff8e8;"><span>🕷️</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
-          <h3>Web Scraping Pipeline</h3>
-          <p>Automated data extraction pipeline using Scrapy and Selenium with PostgreSQL storage and scheduled crawling.</p>
-          <div class="project-stack-row">
-            <span class="ptag">Scrapy</span><span class="ptag">Selenium</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background:#fdf2fb;"><span>🤖</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
-          <h3>AI Chatbot Automation</h3>
-          <p>AI-powered automation tool using OpenAI API and LangChain for intelligent workflow processing and task automation.</p>
-          <div class="project-stack-row">
-            <span class="ptag">OpenAI</span><span class="ptag">LangChain</span><span class="ptag">Python</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background:#e8f0ff;"><span>📊</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
-          <h3>HR &amp; Payroll System</h3>
-          <p>Custom Odoo HR module with attendance tracking, leave management, and fully automated payroll calculation.</p>
-          <div class="project-stack-row">
-            <span class="ptag">Odoo HR</span><span class="ptag">Python</span><span class="ptag">PostgreSQL</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-thumb" style="background:#eafff5;"><span>🔄</span><div class="project-thumb-overlay"></div></div>
-        <div class="project-body">
-          <h3>Odoo API Integration</h3>
-          <p>Third-party service integration with Odoo using JSON-RPC, webhook handling, and real-time data synchronization.</p>
-          <div class="project-stack-row">
-            <span class="ptag">Odoo</span><span class="ptag">REST API</span><span class="ptag">JSON-RPC</span>
-          </div>
-          <a class="project-link" href="https://github.com/AnwarHossain909" target="_blank">View on GitHub →</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section>
-  <div class="section-inner">
-    <p class="section-eyebrow">Testimonials</p>
-    <h2 class="section-title">What Colleagues Say</h2>
-    <div class="rule"></div>
-    <div style="margin-bottom:48px;"></div>
-    <div class="testimonials-grid">
-
-      <div class="testimonial-card">
-        <div class="tquote">"</div>
-        <p class="testimonial-text">Anwar delivered exceptional Odoo customizations on time. His deep understanding of Python ORM and business workflows made the project a huge success.</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">FM</div>
-          <div>
-            <div class="author-name">Forid Mondol</div>
-            <div class="author-role">Project Manager, BDCalling IT Ltd</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="tquote">"</div>
-        <p class="testimonial-text">His Django REST API work was clean, well-documented, and scalable. Anwar is a clear communicator who truly understands backend architecture.</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">SM</div>
-          <div>
-            <div class="author-name">Sayedul Morsalin</div>
-            <div class="author-role">Senior Developer, Tech Team</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="tquote">"</div>
-        <p class="testimonial-text">The web scraping pipeline Anwar built for us saved countless hours of manual work. Reliable, efficient, and exactly what we needed.</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">NH</div>
-          <div>
-            <div class="author-name">Nadim Hossain</div>
-            <div class="author-role">Product Lead</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section" id="contact">
-  <div class="section-inner" style="position:relative;z-index:1;">
-    <h2>Let's Build Something Great</h2>
-    <p>Open to new projects, Odoo consulting, and collaboration opportunities.</p>
-    <a href="mailto:your@email.com" class="btn-gold">Start a Conversation ✉</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Anwar <span>Hossain</span></div>
-  <div class="footer-links">
-    <a href="https://github.com/AnwarHossain909" target="_blank">GitHub</a>
-    <a href="mailto:your@email.com">Email</a>
-    <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-  </div>
-  <div class="footer-divider"></div>
-  <p class="footer-copy">Crafted by Anwar Hossain · Dhaka, Bangladesh · 2025</p>
+  <span>Anwar Hossain · Dhaka, Bangladesh</span>
+  <span><a href="mailto:anwarjafrin@gmail.com">anwarjafrin@gmail.com</a> · <a href="https://github.com/AnwarHossain909" target="_blank" rel="noopener">GitHub</a></span>
 </footer>
 
+<script>
+  // theme: light/dark toggle + accent color picker
+  (function(){
+    const root = document.documentElement;
+    const modeToggle = document.getElementById('modeToggle');
+    const modeLabel = document.getElementById('modeLabel');
+    const modeIcon = document.getElementById('modeIcon');
+    const swatches = document.querySelectorAll('.swatch');
+
+    const sunPath = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+    const moonPath = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+    function applyMode(mode){
+      root.setAttribute('data-theme', mode);
+      modeLabel.textContent = mode === 'light' ? 'Light mode' : 'Dark mode';
+      modeIcon.innerHTML = mode === 'light' ? sunPath : moonPath;
+      try{ localStorage.setItem('portfolio-theme', mode); }catch(e){}
+    }
+    function applyAccent(accent){
+      if(accent === 'amber'){ root.removeAttribute('data-accent'); }
+      else{ root.setAttribute('data-accent', accent); }
+      swatches.forEach(s => s.classList.toggle('active', s.dataset.swatch === accent));
+      try{ localStorage.setItem('portfolio-accent', accent); }catch(e){}
+    }
+
+    let savedMode = 'dark', savedAccent = 'amber';
+    try{
+      savedMode = localStorage.getItem('portfolio-theme') || 'dark';
+      savedAccent = localStorage.getItem('portfolio-accent') || 'amber';
+    }catch(e){}
+    applyMode(savedMode);
+    applyAccent(savedAccent);
+
+    modeToggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyMode(next);
+    });
+    swatches.forEach(s => s.addEventListener('click', () => applyAccent(s.dataset.swatch)));
+  })();
+
+  // tab switching
+  const buttons = document.querySelectorAll('.tabbar button');
+  const panels = document.querySelectorAll('.panel');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // contact form -> mailto fallback (no backend on a static site)
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cname').value;
+    const email = document.getElementById('cemail').value;
+    const msg = document.getElementById('cmsg').value;
+    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+    const body = encodeURIComponent(`${msg}\n\n— ${name} (${email})`);
+    window.location.href = `mailto:anwarjafrin@gmail.com?subject=${subject}&body=${body}`;
+  });
+</script>
 </body>
 </html>
