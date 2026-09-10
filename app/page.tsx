@@ -1,11 +1,12 @@
  "use client";
-import {useState} from "react";
+import {useEffect,useState} from "react";
 import {ArrowRight,ArrowUpRight,Download,Github,Linkedin,Mail,MapPin,Phone,Code2,Database,Server,Users,GraduationCap,Lightbulb,TrendingUp,Menu,X} from "lucide-react";
 
+const BASE_PATH="/AnwarHossain919";
 const projects=[
- {title:"Micro Finance Management System",desc:"Custom Odoo solution for loans, installments, collections and operational workflows.",tags:["Odoo 18","Python","PostgreSQL"],img:"/project-microfinance.png"},
- {title:"Asset Management System",desc:"Business-focused asset lifecycle management with tracking, assignment, reporting and workflows.",tags:["Odoo 18","Python","PostgreSQL"],img:"/project-asset.png"},
- {title:"Export LC Management System",desc:"ERP workflow for export LC operations, documentation, tracking and automation.",tags:["Odoo 18","Python","PostgreSQL"],img:"/project-lc.png"}
+ {title:"Micro Finance Management System",desc:"Custom Odoo solution for loans, installments, collections and operational workflows.",tags:["Odoo 18","Python","PostgreSQL"],img:`${BASE_PATH}/project-microfinance.png`},
+ {title:"Asset Management System",desc:"Business-focused asset lifecycle management with tracking, assignment, reporting and workflows.",tags:["Odoo 18","Python","PostgreSQL"],img:`${BASE_PATH}/project-asset.png`},
+ {title:"Export LC Management System",desc:"ERP workflow for export LC operations, documentation, tracking and automation.",tags:["Odoo 18","Python","PostgreSQL"],img:`${BASE_PATH}/project-lc.png`}
 ];
 const experiences=[
  {date:"Jan 2026 — Present",role:"Senior Executive | Python & Odoo Developer",company:"Zencore Solutions Ltd.",points:["Develop and customize Odoo modules for business operations.","Implement business workflows, automation and ERP integrations.","Work with Python, PostgreSQL and REST APIs."]},
@@ -18,21 +19,28 @@ function Title({label,title=""}:{label:string,title?:string}){return <div classN
 
 export default function Home(){
  const [open,setOpen]=useState(false);
- return <main>
+ const [lightMode,setLightMode]=useState(false);
+ useEffect(()=>{setLightMode(localStorage.getItem("portfolio-theme")==="light")},[]);
+ const toggleTheme=()=>setLightMode(current=>{
+  const next=!current;
+  localStorage.setItem("portfolio-theme",next?"light":"dark");
+  return next;
+ });
+ return <main className={lightMode?"light-mode":""}>
   <header className="nav-wrap"><nav className="nav container">
    <a className="brand" href="#home"><b>AH</b><span>Anwar Hossain</span></a>
    <div className={"nav-links "+(open?"open":"")}>{["Home","About","Experience","Projects","Skills","Contact"].map(x=><a key={x} href={"#"+x.toLowerCase()} onClick={()=>setOpen(false)}>{x}</a>)}</div>
-   <div className="nav-actions"><span className="theme">☼ ◐ ☽</span><button className="menu" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button></div>
+   <div className="nav-actions"><button type="button" className="theme" onClick={toggleTheme} aria-label="Change color mode">{lightMode?"☀ Light":"☾ Dark"}</button><button className="menu" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button></div>
   </nav></header>
 
   <section id="home" className="hero section"><div className="container hero-grid">
    <div className="hero-copy"><p className="hello">Hello, I'm</p><h1>Anwar <span>Hossain</span></h1>
     <h3>Odoo Developer <em>|</em> Python Backend Developer</h3>
     <p className="hero-text">I build scalable ERP systems, develop custom Odoo modules, create efficient backend APIs, and automate business processes with Python and modern technologies.</p>
-    <div className="buttons"><a className="btn primary" href="#projects">View Projects <ArrowRight/></a><a className="btn secondary" href="/Anwar-Hossain-CV.pdf" target="_blank"><Download/> Download CV</a></div>
+    <div className="buttons"><a className="btn primary" href="#projects">View Projects <ArrowRight/></a><a className="btn secondary" href={`${BASE_PATH}/Anwar-Hossain-CV.pdf`} target="_blank"><Download/> Download CV</a></div>
     <div className="tech"><span><Code2/>Python</span><span><Server/>Odoo</span><span><Code2/>Django</span><span><Database/>PostgreSQL</span><span><Code2/>REST API</span></div>
    </div>
-   <div className="hero-photo"><div className="glow"></div><div className="photo"><img src="/anwar.jpeg" alt="Anwar Hossain"/></div><div className="scribble">Code<br/>Build<br/>Automate</div></div>
+   <div className="hero-photo"><div className="glow"></div><div className="photo"><img src={`${BASE_PATH}/anwar.jpeg`} alt="Anwar Hossain"/></div><div className="scribble">Code<br/>Build<br/>Automate</div></div>
   </div></section>
 
   <section id="about" className="section divider"><div className="container"><Title label="About Me" title="Turning Ideas into Scalable Solutions"/>
@@ -41,7 +49,7 @@ export default function Home(){
    </div>
    <div className="contact-card">
     <Info icon={<Users/>} label="Name" value="Anwar Hossain"/><Info icon={<Mail/>} label="Email" value="anwarjafrin@gmail.com"/><Info icon={<Phone/>} label="Phone" value="+880 1743 672990"/><Info icon={<MapPin/>} label="Location" value="Dhaka, Bangladesh"/>
-    <div className="socials"><a href="https://github.com/AnwarHossain909" target="_blank"><Github/></a><a href="https://www.linkedin.com/" target="_blank"><Linkedin/></a><a href="mailto:anwarjafrin@gmail.com"><Mail/></a><a className="mini" href="/Anwar-Hossain-CV.pdf" target="_blank"><Download/> View CV</a></div>
+    <div className="socials"><a href="https://github.com/AnwarHossain909" target="_blank"><Github/></a><a href="https://www.linkedin.com/" target="_blank"><Linkedin/></a><a href="mailto:anwarjafrin@gmail.com"><Mail/></a><a className="mini" href={`${BASE_PATH}/Anwar-Hossain-CV.pdf`} target="_blank"><Download/> View CV</a></div>
    </div></div>
   </div></section>
 
