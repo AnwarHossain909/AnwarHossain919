@@ -1,74 +1,52 @@
- "use client";
+"use client";
 import {useEffect,useState} from "react";
-import {ArrowRight,ArrowUpRight,Download,Github,Linkedin,Mail,MapPin,Phone,Code2,Database,Server,Users,GraduationCap,Lightbulb,TrendingUp,Menu,X} from "lucide-react";
+import {ArrowUpRight,BriefcaseBusiness,Code2,Database,Download,Github,Layers3,Linkedin,Mail,MapPin,Menu,Phone,ServerCog,Sparkles,X} from "lucide-react";
 
-const BASE_PATH="/AnwarHossain919";
-const projects=[
- {title:"Micro Finance Management System",desc:"Custom Odoo solution for loans, installments, collections and operational workflows.",tags:["Odoo 18","Python","PostgreSQL"],img:`${BASE_PATH}/project-microfinance.png`},
- {title:"Asset Management System",desc:"Business-focused asset lifecycle management with tracking, assignment, reporting and workflows.",tags:["Odoo 18","Python","PostgreSQL"],img:`${BASE_PATH}/project-asset.png`},
- {title:"Export LC Management System",desc:"ERP workflow for export LC operations, documentation, tracking and automation.",tags:["Odoo 18","Python","PostgreSQL"],img:`${BASE_PATH}/project-lc.png`}
+const BASE_PATH=process.env.NODE_ENV==="production"?"/AnwarHossain919":"";
+const services=[
+ {icon:<Layers3/>,title:"Odoo Module Development",text:"Custom Odoo modules designed around practical business requirements and scalable workflows."},
+ {icon:<ServerCog/>,title:"ERP Customization",text:"Forms, reports, security, approvals and process automation tailored for growing businesses."},
+ {icon:<Code2/>,title:"API & Backend Integration",text:"Reliable Python APIs, payment gateway integrations and connections with third-party services."}
 ];
 const experiences=[
- {date:"Jan 2026 — Present",role:"Senior Executive | Python & Odoo Developer",company:"Zencore Solutions Ltd.",points:["Develop and customize Odoo modules for business operations.","Implement business workflows, automation and ERP integrations.","Work with Python, PostgreSQL and REST APIs."]},
- {date:"Sep 2025 — Jan 2026",role:"Odoo Developer",company:"Zencore Solutions Ltd.",points:["Customized Odoo ERP modules and implemented client-specific requirements."]},
- {date:"Dec 2024 — Aug 2025",role:"Python Developer",company:"AppExit",points:["Built backend features and worked with Python-based web applications."]}
+ {date:"Jan 2026 — Present",role:"Senior Executive | Python & Odoo Developer",company:"Zencore Solutions Ltd.",text:"Developing custom Odoo modules, automating business workflows and delivering ERP integrations with Python and PostgreSQL."},
+ {date:"Sep 2025 — Jan 2026",role:"Odoo Developer",company:"Zencore Solutions Ltd.",text:"Customized Odoo ERP applications and implemented client-focused functional and technical requirements."},
+ {date:"Dec 2024 — Aug 2025",role:"Python Developer",company:"AppExit",text:"Built backend features and contributed to maintainable Python-based web applications."}
 ];
-const skills=["Python","Odoo","Django","PostgreSQL","MySQL","Git & GitHub","Linux","VS Code"];
+const skills=["Odoo 18/19","Python","PostgreSQL","Django","REST API","JavaScript","Git & GitHub","Linux"];
+const projects=[
+ {eyebrow:"ERP Solution",title:"Micro Finance Management System",text:"Loans, installments, collections, accounting and operational workflows in one custom Odoo solution.",image:`${BASE_PATH}/project-microfinance.png`,tone:"gold"},
+ {eyebrow:"Business Automation",title:"Asset Management System",text:"A complete asset lifecycle solution covering tracking, assignment, maintenance, reporting and approvals.",image:`${BASE_PATH}/project-asset.png`,tone:"purple"},
+ {eyebrow:"Trade Operations",title:"Export LC Management System",text:"An automated ERP workflow for export LC documentation, realization, discounting and financial tracking.",image:`${BASE_PATH}/project-lc.png`,tone:"blue"}
+];
 
-function Title({label,title=""}:{label:string,title?:string}){return <div className="section-title"><i></i><div><p>{label}</p>{title&&<h2>{title}</h2>}</div></div>}
+function Reveal({children,className=""}:{children:React.ReactNode,className?:string}){
+ const [visible,setVisible]=useState(false);const [node,setNode]=useState<HTMLDivElement|null>(null);
+ useEffect(()=>{if(!node)return;const observer=new IntersectionObserver(([entry])=>{if(entry.isIntersecting){setVisible(true);observer.disconnect()}},{threshold:.12});observer.observe(node);return()=>observer.disconnect()},[node]);
+ return <div ref={setNode} className={`reveal ${visible?"is-visible":""} ${className}`}>{children}</div>;
+}
+function SectionHead({label,title,text}:{label:string,title:string,text?:string}){return <div className="section-head"><span className="eyebrow"><Sparkles/>{label}</span><h2>{title}</h2>{text&&<p>{text}</p>}</div>}
 
 export default function Home(){
- const [open,setOpen]=useState(false);
- const [lightMode,setLightMode]=useState(false);
+ const [menuOpen,setMenuOpen]=useState(false);const [lightMode,setLightMode]=useState(false);
  useEffect(()=>{setLightMode(localStorage.getItem("portfolio-theme")==="light")},[]);
- const toggleTheme=()=>setLightMode(current=>{
-  const next=!current;
-  localStorage.setItem("portfolio-theme",next?"light":"dark");
-  return next;
- });
- return <main className={lightMode?"light-mode":""}>
-  <header className="nav-wrap"><nav className="nav container">
-   <a className="brand" href="#home"><b>AH</b><span>Anwar Hossain</span></a>
-   <div className={"nav-links "+(open?"open":"")}>{["Home","About","Experience","Projects","Skills","Contact"].map(x=><a key={x} href={"#"+x.toLowerCase()} onClick={()=>setOpen(false)}>{x}</a>)}</div>
-   <div className="nav-actions"><button type="button" className="theme" onClick={toggleTheme} aria-label="Change color mode">{lightMode?"☀ Light":"☾ Dark"}</button><button className="menu" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button></div>
-  </nav></header>
+ const toggleTheme=()=>setLightMode(current=>{const next=!current;localStorage.setItem("portfolio-theme",next?"light":"dark");return next});
+ const closeMenu=()=>setMenuOpen(false);
+ return <main className={lightMode?"site light-mode":"site"}>
+  <header className="nav-wrap"><nav className="nav shell"><a className="brand" href="#home" onClick={closeMenu}><i></i><b>Anwar</b></a><div className={`nav-links ${menuOpen?"open":""}`}>{["Home","About","Services","Experience","Skills","Projects","Contact"].map(item=><a key={item} href={`#${item.toLowerCase()}`} onClick={closeMenu}>{item}</a>)}</div><div className="nav-actions"><button className="theme-switch" type="button" onClick={toggleTheme}>{lightMode?"Dark":"Light"}</button><a className="chat" href="#contact">Let&apos;s Chat</a><button className="menu" type="button" aria-label="Open menu" onClick={()=>setMenuOpen(!menuOpen)}>{menuOpen?<X/>:<Menu/>}</button></div></nav></header>
 
-  <section id="home" className="hero section"><div className="container hero-grid">
-   <div className="hero-copy"><p className="hello">Hello, I'm</p><h1>Anwar <span>Hossain</span></h1>
-    <h3>Odoo Developer <em>|</em> Python Backend Developer</h3>
-    <p className="hero-text">I build scalable ERP systems, develop custom Odoo modules, create efficient backend APIs, and automate business processes with Python and modern technologies.</p>
-    <div className="buttons"><a className="btn primary" href="#projects">View Projects <ArrowRight/></a><a className="btn secondary" href={`${BASE_PATH}/Anwar-Hossain-CV.pdf`} target="_blank"><Download/> Download CV</a></div>
-    <div className="tech"><span><Code2/>Python</span><span><Server/>Odoo</span><span><Code2/>Django</span><span><Database/>PostgreSQL</span><span><Code2/>REST API</span></div>
-   </div>
-   <div className="hero-photo"><div className="glow"></div><div className="photo"><img src={`${BASE_PATH}/anwar.jpeg`} alt="Anwar Hossain"/></div><div className="scribble">Code<br/>Build<br/>Automate</div></div>
-  </div></section>
+  <section id="home" className="hero"><div className="hero-left"><div className="hero-content"><p className="hello">Hi! I&apos;m Anwar Hossain</p><h1>Odoo & Python<br/><span>Backend Developer</span></h1><p className="hero-copy">I build scalable ERP solutions, custom Odoo modules and efficient backend integrations that turn complex business processes into simple digital workflows.</p><div className="hero-actions"><a className="btn btn-primary" href="#contact"><BriefcaseBusiness/>Hire Me</a><a className="btn btn-outline" href={`${BASE_PATH}/Anwar-Hossain-CV.pdf`} target="_blank"><Download/>Download CV</a></div><div className="hero-stats"><div><b>Odoo</b><span>ERP Development</span></div><div><b>Python</b><span>Backend Solutions</span></div><div><b>Dhaka</b><span>Bangladesh</span></div></div></div></div><div className="hero-visual"><div className="name-watermark">ANWAR<br/>HOSSAIN</div><span className="shape shape-one"></span><span className="shape shape-two"></span><img src={`${BASE_PATH}/anwar.jpeg`} alt="Anwar Hossain"/></div></section>
 
-  <section id="about" className="section divider"><div className="container"><Title label="About Me" title="Turning Ideas into Scalable Solutions"/>
-   <div className="about-grid"><div><p className="about-text">I am an Odoo Developer and Python Backend Developer with hands-on experience in Odoo ERP customization, module development, business workflow implementation, and building REST APIs. I enjoy solving real-world problems with clean code and efficient solutions.</p>
-    <div className="traits"><div><Lightbulb/>Problem Solver</div><div><GraduationCap/>Quick Learner</div><div><Users/>Team Player</div><div><TrendingUp/>Always Improving</div></div>
-   </div>
-   <div className="contact-card">
-    <Info icon={<Users/>} label="Name" value="Anwar Hossain"/><Info icon={<Mail/>} label="Email" value="anwarjafrin@gmail.com"/><Info icon={<Phone/>} label="Phone" value="+880 1743 672990"/><Info icon={<MapPin/>} label="Location" value="Dhaka, Bangladesh"/>
-    <div className="socials"><a href="https://github.com/AnwarHossain909" target="_blank"><Github/></a><a href="https://www.linkedin.com/" target="_blank"><Linkedin/></a><a href="mailto:anwarjafrin@gmail.com"><Mail/></a><a className="mini" href={`${BASE_PATH}/Anwar-Hossain-CV.pdf`} target="_blank"><Download/> View CV</a></div>
-   </div></div>
-  </div></section>
+  <section id="about" className="section about-section"><div className="shell"><Reveal><span className="eyebrow"><Sparkles/>ABOUT ME</span><h2 className="about-title">Hi! I&apos;m Anwar Hossain</h2><p className="about-copy">I&apos;m an Odoo Developer and Python Backend Developer focused on ERP customization, module development, workflow automation and API integration. I enjoy converting real business challenges into clean, dependable and scalable solutions.</p><div className="about-meta"><div><span>Email</span><a href="mailto:anwarjafrin@gmail.com">anwarjafrin@gmail.com</a></div><div><span>Phone</span><a href="tel:+8801743672990">+880 1743 672990</a></div><div><span>Location</span><b>Dhaka, Bangladesh</b></div><div><span>Focus</span><b>Odoo ERP & Backend</b></div><div className="about-social"><span>Social Media</span><p><a href="https://github.com/AnwarHossain909" target="_blank"><Github/></a><a href="https://www.linkedin.com/" target="_blank"><Linkedin/></a></p></div></div></Reveal></div></section>
 
-  <section id="experience" className="section divider"><div className="container"><Title label="Experience"/>
-   <div className="experience-grid"><div className="timeline">{experiences.map(e=><article className="exp" key={e.date+e.role}><span className="dot"></span><small>{e.date}</small><h3>{e.role}</h3><h4>{e.company}</h4><ul>{e.points.map(p=><li key={p}>{p}</li>)}</ul></article>)}</div>
-    <div className="goal"><small>MY GOAL</small><h3>Build impactful<br/>solutions with Odoo<br/>and Python.</h3><Code2 className="goal-icon"/></div>
-   </div>
-  </div></section>
+  <section id="services" className="section alternate"><div className="shell"><Reveal><SectionHead label="SERVICES" title="Services I Offer" text="Purpose-built ERP and backend solutions that help teams work faster, smarter and with confidence."/><div className="service-grid">{services.map((service,index)=><article className="service-card" key={service.title}><span>{service.icon}</span><h3>{service.title}</h3><p>{service.text}</p><i>0{index+1}</i></article>)}</div></Reveal></div></section>
 
-  <section id="projects" className="section divider"><div className="container"><Title label="Featured Projects"/>
-   <div className="projects">{projects.map(p=><article className="project" key={p.title}><div className="project-img"><img src={p.img} alt=""/><b>ODOO</b></div><div className="project-body"><h3>{p.title}</h3><p>{p.desc}</p><div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div><a href="#contact" className="arrow"><ArrowUpRight/></a></div></article>)}</div>
-  </div></section>
+  <section id="experience" className="section"><div className="shell"><Reveal><SectionHead label="LIFE TIME" title="Professional Experience" text="A growing journey through Python development, Odoo customization and business process automation."/><div className="timeline">{experiences.map((item,index)=><article className={index%2?"timeline-item right":"timeline-item left"} key={item.date+item.role}><span className="timeline-dot"></span><div className="timeline-card"><small>{item.date}</small><h3>{item.role}</h3><h4>{item.company}</h4><p>{item.text}</p></div></article>)}</div></Reveal></div></section>
 
-  <section id="skills" className="section divider"><div className="container"><Title label="My Skills"/><div className="skills">{skills.map(s=><span key={s}><Code2/>{s}</span>)}</div></div></section>
+  <section id="skills" className="section alternate"><div className="shell"><Reveal><SectionHead label="SKILLS" title="Technologies & Expertise" text="The technical toolkit I use to build dependable ERP systems and backend applications."/><div className="skill-grid">{skills.map((skill,index)=><div className="skill-orbit" key={skill}><div><Code2/><b>{skill}</b><span>{String(index+1).padStart(2,"0")}</span></div></div>)}</div></Reveal></div></section>
 
-  <section id="contact" className="section divider"><div className="container contact-grid"><div><Title label="Let's Connect"/><p className="lead">Feel free to reach out for collaboration, opportunities, or just to say hello!</p><div className="contact-list"><a href="mailto:anwarjafrin@gmail.com"><Mail/>anwarjafrin@gmail.com</a><a href="tel:+8801743672990"><Phone/>+880 1743 672990</a><span><MapPin/>Dhaka, Bangladesh</span></div></div>
-   <form className="form" action="mailto:anwarjafrin@gmail.com" method="post" encType="text/plain"><div className="form-row"><input name="name" placeholder="Your Name"/><input name="email" type="email" placeholder="Your Email"/></div><textarea name="message" placeholder="Message" rows={5}/><button className="btn primary">Send Message <ArrowRight/></button></form>
-  </div></section>
-  <footer><div className="container footer"><span>© 2026 Anwar Hossain. All rights reserved.</span><div><a href="https://github.com/AnwarHossain909"><Github/></a><a href="https://www.linkedin.com/"><Linkedin/></a><a href="mailto:anwarjafrin@gmail.com"><Mail/></a><a href="#home">↑</a></div></div></footer>
+  <section id="projects" className="section"><div className="shell"><Reveal><SectionHead label="SELECTED WORK" title="Showcasing My Odoo Projects" text="Business-focused solutions built to automate operations, improve control and create measurable value."/><div className="project-list">{projects.map((project,index)=><article className={`project-row ${index%2?"reverse":""}`} key={project.title}><div className="project-copy"><span className={project.tone}>{project.eyebrow}</span><h3>{project.title}</h3><p>{project.text}</p><div className="project-tools"><Code2/><Database/><ServerCog/></div><a href="#contact">View Project<ArrowUpRight/></a></div><div className={`project-image ${project.tone}`}><div className="project-placeholder"><b>ODOO</b><span>{project.title}</span></div><img src={project.image} alt={project.title} onError={event=>{event.currentTarget.style.display="none"}}/></div></article>)}</div></Reveal></div></section>
+
+  <section id="contact" className="contact-section"><div className="shell contact-top"><Reveal><h2>Have a project in mind?<br/>Let&apos;s get to work.</h2><a className="btn btn-primary" href="mailto:anwarjafrin@gmail.com">Say Hello<ArrowUpRight/></a></Reveal><div className="contact-art"><Code2/><span></span><i></i></div></div><div className="contact-wave"></div><div className="contact-details"><div className="shell contact-grid"><div><Phone/><span>Available for professional discussion.</span><a href="tel:+8801743672990">+880 1743 672990</a></div><div><Mail/><span>Let&apos;s discuss your next solution.</span><a href="mailto:anwarjafrin@gmail.com">anwarjafrin@gmail.com</a></div><div><MapPin/><span>Based in Bangladesh.</span><b>Dhaka, Bangladesh</b></div></div><footer className="shell"><span>© 2026 Anwar Hossain. All rights reserved.</span><p><a href="https://github.com/AnwarHossain909" target="_blank"><Github/></a><a href="https://www.linkedin.com/" target="_blank"><Linkedin/></a></p></footer></div></section>
  </main>
 }
-function Info({icon,label,value}:{icon:React.ReactNode,label:string,value:string}){return <div className="info"><span>{icon}</span><div><small>{label}</small><strong>{value}</strong></div></div>}
